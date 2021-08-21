@@ -18,6 +18,7 @@ const typeDefs = gql`
     imageUrl: String
     job: String
     email: String
+    bio: String
     location: String
   }
   type WebLink {
@@ -44,6 +45,10 @@ const resolvers = {
         imageUrl: "/images/profileImage.jpg",
         job: "Software Program Developer",
         email: "katsutoshi.saino@gmail.com",
+        bio: "東京都出身のエンジニア。大学在学中にインターンや受託でWeb開発を経験。" +
+          "その後、個人開発を経て、お金の会社に就職。" +
+          "Railsでのサーバー開発から始まり、JSのFW(AngularやNuxt)を使ったフロントエンド開発、" +
+          "AWSでインフラの構築を経験してきました。",
         location: "Tokyo",
       }
     },
