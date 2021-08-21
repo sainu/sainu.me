@@ -1,40 +1,10 @@
-import { ApolloServer, gql } from 'apollo-server-micro'
+import { GraphQLFileLoader } from '@graphql-tools/graphql-file-loader'
+import { loadSchemaSync } from '@graphql-tools/load'
+import { addResolversToSchema } from '@graphql-tools/schema'
+import { ApolloServer } from 'apollo-server-micro'
 import { NextApiRequest, NextApiResponse, PageConfig } from 'next'
+import { join } from 'path'
 
-const typeDefs = gql`
-  type Query {
-    profile: Profile
-    webLinks: [WebLink]
-    socialLinks: [SocialLink]
-    skills: [Skill]
-  }
-  type Profile {
-    familyNameKanji: String
-    givenNameKanji: String
-    familyNameKana: String
-    givenNameKana: String
-    familyNameEn: String
-    givenNameEn: String
-    nickname: String
-    imageUrl: String
-    job: String
-    email: String
-    bio: String
-    location: String
-  }
-  type WebLink {
-    title: String
-    url: String
-  }
-  type SocialLink {
-    name: String
-    url: String
-  }
-  type Skill {
-    name: String
-    score: Int
-  }
-`
 const profile = {
   familyNameKanji: "道祖",
   givenNameKanji: "克理",
@@ -142,6 +112,10 @@ const skills = [
   },
 ]
 
+const schema = loadSchemaSync(join(__dirname, '../../../../schema.graphql'), {
+  loaders: [new GraphQLFileLoader]
+})
+
 const resolvers = {
   Query: {
     profile: () => profile,
@@ -151,7 +125,9 @@ const resolvers = {
   }
 }
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers })
+const schemaWithResolvers = addResolversToSchema({ schema, resolvers })
+
+const apolloServer = new ApolloServer({ schema: schemaWithResolvers })
 
 const startServer = apolloServer.start()
 
