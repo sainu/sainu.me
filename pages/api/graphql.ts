@@ -14,6 +14,16 @@ const typeDefs = gql`
     givenNameEn: String
     nickname: String
     imageUrl: String
+    webLinks: [WebLink!]
+    socialLinks: [SocialLink!]
+  }
+  type WebLink {
+    title: String
+    url: String
+  }
+  type SocialLink {
+    name: String
+    url: String
   }
 `
 
@@ -29,6 +39,38 @@ const resolvers = {
         givenNameEn: "Katsutoshi",
         nickname: "sainu",
         imageUrl: "/images/profileImage.jpg",
+        webLinks: [
+          {
+            title: "職務経歴",
+            url: "https://github.com/sainu/resume",
+          },
+          {
+            title: "ブログ",
+            url: "https://sainu.hatenablog.jp/",
+          },
+        ],
+        socialLinks: [
+          {
+            name: "github",
+            url: "https://github.com/sainu",
+          },
+          {
+            name: "twitter",
+            url: "https://twitter.com/sainuio",
+          },
+          {
+            name: "facebook",
+            url: "https://www.facebook.com/sainou.katsutoshi",
+          },
+          {
+            name: "wantedly",
+            url: "https://www.wantedly.com/id/sainu",
+          },
+          {
+            name: "qiita",
+            url: "https://qiita.com/sainu",
+          },
+        ],
       }
     }
   }
