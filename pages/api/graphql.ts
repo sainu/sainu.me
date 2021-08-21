@@ -62,23 +62,23 @@ const resolvers = {
     socialLinks() {
       return [
         {
-          name: "github",
+          name: "GitHub",
           url: "https://github.com/sainu",
         },
         {
-          name: "twitter",
+          name: "Twitter",
           url: "https://twitter.com/sainuio",
         },
         {
-          name: "facebook",
+          name: "Facebook",
           url: "https://www.facebook.com/sainou.katsutoshi",
         },
         {
-          name: "wantedly",
+          name: "Wantedly",
           url: "https://www.wantedly.com/id/sainu",
         },
         {
-          name: "qiita",
+          name: "Qiita",
           url: "https://qiita.com/sainu",
         },
       ]
