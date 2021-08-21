@@ -1,8 +1,18 @@
-import type { NextPage } from 'next'
+import type { InferGetStaticPropsType, NextPage } from 'next'
 
-const Home: NextPage = () => {
+type Props = InferGetStaticPropsType<typeof getStaticProps>
+
+export const getStaticProps = async () => {
+  return {
+    props: {}
+  }
+}
+
+const Home: NextPage<Props> = ({}) => {
   return (
-    <p>Hello</p>
+    <div className="max-w-screen-sm mx-auto my-0">
+      <p>hello</p>
+    </div>
   )
 }
 
