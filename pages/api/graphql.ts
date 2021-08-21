@@ -6,7 +6,14 @@ const typeDefs = gql`
     profile: Profile
   }
   type Profile {
-    name: String
+    familyNameKanji: String
+    givenNameKanji: String
+    familyNameKana: String
+    givenNameKana: String
+    familyNameEn: String
+    givenNameEn: String
+    nickname: String
+    imageUrl: String
   }
 `
 
@@ -14,7 +21,14 @@ const resolvers = {
   Query: {
     profile() {
       return {
-        name: 'hey'
+        familyNameKanji: "道祖",
+        givenNameKanji: "克理",
+        familyNameKana: "さいのう",
+        givenNameKana: "かつとし",
+        familyNameEn: "Saino",
+        givenNameEn: "Katsutoshi",
+        nickname: "sainu",
+        imageUrl: "/images/profileImage.jpg",
       }
     }
   }
