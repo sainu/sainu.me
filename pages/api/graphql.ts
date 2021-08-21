@@ -16,6 +16,7 @@ const typeDefs = gql`
     imageUrl: String
     job: String
     email: String
+    location: String
     webLinks: [WebLink!]
     socialLinks: [SocialLink!]
   }
@@ -43,6 +44,7 @@ const resolvers = {
         imageUrl: "/images/profileImage.jpg",
         job: "Software Program Developer",
         email: "katsutoshi.saino@gmail.com",
+        location: "Tokyo",
         webLinks: [
           {
             title: "職務経歴",
