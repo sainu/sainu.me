@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.8",
     "@graphql-tools/graphql-file-loader": "^7.0.5",
     "@graphql-tools/load": "^7.1.8",
     "@graphql-tools/schema": "^8.1.2",
