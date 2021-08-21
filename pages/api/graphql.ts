@@ -14,6 +14,7 @@ const typeDefs = gql`
     givenNameEn: String
     nickname: String
     imageUrl: String
+    job: String
     webLinks: [WebLink!]
     socialLinks: [SocialLink!]
   }
@@ -39,6 +40,7 @@ const resolvers = {
         givenNameEn: "Katsutoshi",
         nickname: "sainu",
         imageUrl: "/images/profileImage.jpg",
+        job: "Software Program Developer",
         webLinks: [
           {
             title: "職務経歴",
