@@ -4,6 +4,8 @@ import { NextApiRequest, NextApiResponse, PageConfig } from 'next'
 const typeDefs = gql`
   type Query {
     profile: Profile
+    webLinks: [WebLink]
+    socialLinks: [SocialLink]
   }
   type Profile {
     familyNameKanji: String
@@ -17,8 +19,6 @@ const typeDefs = gql`
     job: String
     email: String
     location: String
-    webLinks: [WebLink!]
-    socialLinks: [SocialLink!]
   }
   type WebLink {
     title: String
@@ -45,39 +45,43 @@ const resolvers = {
         job: "Software Program Developer",
         email: "katsutoshi.saino@gmail.com",
         location: "Tokyo",
-        webLinks: [
-          {
-            title: "職務経歴",
-            url: "https://github.com/sainu/resume",
-          },
-          {
-            title: "ブログ",
-            url: "https://sainu.hatenablog.jp/",
-          },
-        ],
-        socialLinks: [
-          {
-            name: "github",
-            url: "https://github.com/sainu",
-          },
-          {
-            name: "twitter",
-            url: "https://twitter.com/sainuio",
-          },
-          {
-            name: "facebook",
-            url: "https://www.facebook.com/sainou.katsutoshi",
-          },
-          {
-            name: "wantedly",
-            url: "https://www.wantedly.com/id/sainu",
-          },
-          {
-            name: "qiita",
-            url: "https://qiita.com/sainu",
-          },
-        ],
       }
+    },
+    webLinks() {
+      return [
+        {
+          title: "職務経歴",
+          url: "https://github.com/sainu/resume",
+        },
+        {
+          title: "ブログ",
+          url: "https://sainu.hatenablog.jp/",
+        },
+      ]
+    },
+    socialLinks() {
+      return [
+        {
+          name: "github",
+          url: "https://github.com/sainu",
+        },
+        {
+          name: "twitter",
+          url: "https://twitter.com/sainuio",
+        },
+        {
+          name: "facebook",
+          url: "https://www.facebook.com/sainou.katsutoshi",
+        },
+        {
+          name: "wantedly",
+          url: "https://www.wantedly.com/id/sainu",
+        },
+        {
+          name: "qiita",
+          url: "https://qiita.com/sainu",
+        },
+      ]
     }
   }
 }
