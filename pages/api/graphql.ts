@@ -1,6 +1,6 @@
 import { ApolloServer } from 'apollo-server-micro'
 import { NextApiRequest, NextApiResponse, PageConfig } from 'next'
-import { schemaWithResolvers } from '../../graphql/schema'
+import { schemaWithResolvers } from 'lib/graphql/schema'
 
 const apolloServer = new ApolloServer({ schema: schemaWithResolvers })
 
