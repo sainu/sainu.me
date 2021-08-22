@@ -1,4 +1,6 @@
-export const skillsResolver = () => {
+import { Skill } from "lib/models/skill"
+
+export const getSkills = (): Skill[] => {
   return [
     {
       name: "TypeScript",

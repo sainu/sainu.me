@@ -1,4 +1,6 @@
-export const webLinksResolver = () => {
+import { WebLink } from "lib/models/webLink";
+
+export const getWebLinks = (): WebLink[] => {
   return [
     {
       title: "職務経歴",

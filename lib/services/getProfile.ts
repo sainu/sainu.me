@@ -1,4 +1,6 @@
-export const profileResolver = () => {
+import { Profile } from "lib/models/profile"
+
+export const getProfile = (): Profile => {
   return {
     familyNameKanji: "道祖",
     givenNameKanji: "克理",

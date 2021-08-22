@@ -1,4 +1,6 @@
-export const socialLinksResolver = () => {
+import { SocialLink } from "lib/models/socialLink";
+
+export const getSocialLinks = (): SocialLink[] => {
   return [
     {
       name: "GitHub",
