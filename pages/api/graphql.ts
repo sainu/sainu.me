@@ -3,7 +3,7 @@ import { NextApiRequest, NextApiResponse, PageConfig } from 'next'
 import { GraphQLFileLoader } from "@graphql-tools/graphql-file-loader";
 import { loadSchemaSync } from "@graphql-tools/load";
 import { addResolversToSchema } from "@graphql-tools/schema";
-import { Resolvers } from "pages/api/graphql/generated/resolvers";
+import { Resolvers } from "graphql/generated/resolvers";
 import { join } from 'path'
 import { getProfile } from "lib/services/getProfile";
 import { getWebLinks } from "lib/services/getWebLinks";

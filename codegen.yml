@@ -1,6 +1,6 @@
 overwrite: true
 generates:
-  ./pages/api/graphql/generated/resolvers.ts:
+  ./graphql/generated/resolvers.ts:
     schema: ./schema.graphql
     config:
       useIndexSignature: true
