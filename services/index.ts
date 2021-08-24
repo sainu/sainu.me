@@ -1,5 +1,6 @@
 import { apiClient } from "lib/httpClient"
 import { Profile } from "type/API/profile"
+import { Skill } from "type/API/skill"
 
 export const fetchProfile = async (): Promise<Profile> => {
   const res = await apiClient.get('/api/profile')
@@ -19,5 +20,17 @@ const mapProfile = (data: any): Profile => {
     email: data['email'],
     bio: data['bio'],
     location: data['location'],
+  }
+}
+
+export const fetchSkills = async (): Promise<Skill[]> => {
+  const res = await apiClient.get('/api/skills')
+  return res.data.map(mapSkill)
+}
+
+const mapSkill = (data: any): Skill => {
+  return {
+    name: data['name'],
+    score: data['score'],
   }
 }

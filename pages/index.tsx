@@ -1,21 +1,26 @@
 import type { InferGetStaticPropsType, NextPage } from 'next'
-import { fetchProfile } from 'services'
+import { fetchProfile, fetchSkills } from 'services'
 import Image from 'next/image'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 export const getStaticProps = async () => {
-  const profile = await fetchProfile()
+  const responses = await Promise.all([
+    fetchProfile(),
+    fetchSkills()
+  ])
 
   return {
     props: {
-      profile
+      profile: responses[0],
+      skills: responses[1],
     }
   }
 }
 
 const Home: NextPage<Props> = ({
-  profile
+  profile,
+  skills,
 }) => {
   return (
     <div className="max-w-screen-md mx-auto my-0 pt-8 px-4">
@@ -44,6 +49,20 @@ const Home: NextPage<Props> = ({
             {profile.bio}
           </p>
         </div>
+      </div>
+
+      <h2 className="text-xl">
+        Skills
+      </h2>
+
+      <div>
+        <ul className="list-disc pl-7">
+          {skills.map(skill => (
+            <li key={skill.name}>
+              {skill.name}
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   )
