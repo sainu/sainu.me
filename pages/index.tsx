@@ -1,5 +1,6 @@
 import type { InferGetStaticPropsType, NextPage } from 'next'
-import { fetchProfile, fetchSkills } from 'services'
+import Link from 'next/link'
+import { fetchProfile, fetchSkills, fetchSocialLinks, fetchWebLinks } from 'services'
 import Image from 'next/image'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
@@ -7,13 +8,17 @@ type Props = InferGetStaticPropsType<typeof getStaticProps>
 export const getStaticProps = async () => {
   const responses = await Promise.all([
     fetchProfile(),
-    fetchSkills()
+    fetchSkills(),
+    fetchSocialLinks(),
+    fetchWebLinks(),
   ])
 
   return {
     props: {
       profile: responses[0],
       skills: responses[1],
+      socialLinks: responses[2],
+      webLinks: responses[3],
     }
   }
 }
@@ -21,6 +26,8 @@ export const getStaticProps = async () => {
 const Home: NextPage<Props> = ({
   profile,
   skills,
+  socialLinks,
+  webLinks,
 }) => {
   return (
     <div className="max-w-screen-md mx-auto my-0 pt-8 px-4">
@@ -51,18 +58,47 @@ const Home: NextPage<Props> = ({
         </div>
       </div>
 
-      <h2 className="text-xl">
-        Skills
-      </h2>
+      <div className="flex flex-row gap-16">
+        <div>
+          <h2 className="text-xl">
+            Skills
+          </h2>
 
-      <div>
-        <ul className="list-disc pl-7">
-          {skills.map(skill => (
-            <li key={skill.name}>
-              {skill.name}
-            </li>
-          ))}
-        </ul>
+          <ul className="list-disc pl-7">
+            {skills.map(skill => (
+              <li key={skill.name}>
+                {skill.name}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h2 className="text-xl">
+            Links
+          </h2>
+
+          <ul className="list-disc pl-7">
+            {socialLinks.map(socialLink => (
+              <li key={socialLink.name}>
+                <Link href={socialLink.url} passHref>
+                  <a className="underline" style={{ textUnderlinePosition: 'under' }} target='_blank'>
+                    {socialLink.name}
+                  </a>
+                </Link>
+              </li>
+            ))}
+            {webLinks.map(webLink => (
+              <li key={webLink.name}>
+                <Link href={webLink.url} passHref>
+                  <a className="underline" style={{ textUnderlinePosition: 'under' }} target='_blank'>
+                    {webLink.name}
+                  </a>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   )

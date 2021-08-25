@@ -1,6 +1,8 @@
 import { apiClient } from "lib/httpClient"
 import { Profile } from "type/API/profile"
 import { Skill } from "type/API/skill"
+import { SocialLink } from "type/API/socialLink"
+import { WebLink } from "type/API/webLink"
 
 export const fetchProfile = async (): Promise<Profile> => {
   const res = await apiClient.get('/api/profile')
@@ -32,5 +34,29 @@ const mapSkill = (data: any): Skill => {
   return {
     name: data['name'],
     score: data['score'],
+  }
+}
+
+export const fetchSocialLinks = async (): Promise<SocialLink[]> => {
+  const res = await apiClient.get('/api/social_links')
+  return res.data.map(mapSocialLink)
+}
+
+const mapSocialLink = (data: any): SocialLink => {
+  return {
+    name: data['name'],
+    url: data['url'],
+  }
+}
+
+export const fetchWebLinks = async(): Promise<WebLink[]> => {
+  const res = await apiClient.get('/api/web_links')
+  return res.data.map(mapWebLink)
+}
+
+const mapWebLink = (data: any): WebLink => {
+  return {
+    name: data['name'],
+    url: data['url'],
   }
 }
