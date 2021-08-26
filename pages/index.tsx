@@ -66,7 +66,7 @@ const Home: NextPage<Props> = ({
           About me
         </h1>
 
-        <div className="flex flex-col sm:flex-row my-12">
+        <div className="flex flex-col sm:flex-row mt-12">
           <div className="flex-shrink-0">
             <div className="flex justify-center pb-5 sm:items-start">
               <Image
@@ -90,7 +90,7 @@ const Home: NextPage<Props> = ({
           </div>
         </div>
 
-        <div className="flex flex-row gap-16 my-12">
+        <div className="flex flex-row gap-16 mt-12">
           <div>
             <h2 className="text-xl mb-2">
               Skills
@@ -133,7 +133,7 @@ const Home: NextPage<Props> = ({
           </div>
         </div>
 
-        <div className="my-12">
+        <div className="mt-12">
           <h2 className="text-xl mb-2">
             Experiences
           </h2>
