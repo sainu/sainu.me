@@ -61,7 +61,7 @@ const Home: NextPage<Props> = ({
         <meta property="profile:gender" content="male" />
       </Head>
 
-      <div className="max-w-screen-md mx-auto my-0 pt-8 px-4">
+      <main className="max-w-screen-md mx-auto my-0 pt-8 px-4">
         <h1 className="text-3xl">
           About me
         </h1>
@@ -182,7 +182,7 @@ const Home: NextPage<Props> = ({
             })}
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer copyRight={profile.fullNameEn} />
     </>
