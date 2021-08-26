@@ -1,7 +1,14 @@
 import type { InferGetStaticPropsType, NextPage } from 'next'
 import Link from 'next/link'
-import { fetchProfile, fetchSkills, fetchSocialLinks, fetchWebLinks } from 'services'
+import {
+  fetchExperiences,
+  fetchProfile,
+  fetchSkills,
+  fetchSocialLinks,
+  fetchWebLinks,
+} from 'services'
 import Image from 'next/image'
+import { formatExperienceDate } from 'lib/date'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -11,6 +18,7 @@ export const getStaticProps = async () => {
     fetchSkills(),
     fetchSocialLinks(),
     fetchWebLinks(),
+    fetchExperiences(),
   ])
 
   return {
@@ -19,6 +27,7 @@ export const getStaticProps = async () => {
       skills: responses[1],
       socialLinks: responses[2],
       webLinks: responses[3],
+      experiences: responses[4],
     }
   }
 }
@@ -28,13 +37,15 @@ const Home: NextPage<Props> = ({
   skills,
   socialLinks,
   webLinks,
+  experiences,
 }) => {
   return (
     <div className="max-w-screen-md mx-auto my-0 pt-8 px-4">
       <h1 className="text-3xl">
         About me
       </h1>
-      <div className="flex flex-col sm:flex-row py-6">
+
+      <div className="flex flex-col sm:flex-row my-12">
         <div className="flex-shrink-0">
           <div className="flex justify-center pb-5 sm:items-start">
             <Image
@@ -58,9 +69,9 @@ const Home: NextPage<Props> = ({
         </div>
       </div>
 
-      <div className="flex flex-row gap-16">
+      <div className="flex flex-row gap-16 my-12">
         <div>
-          <h2 className="text-xl">
+          <h2 className="text-xl mb-2">
             Skills
           </h2>
 
@@ -74,7 +85,7 @@ const Home: NextPage<Props> = ({
         </div>
 
         <div>
-          <h2 className="text-xl">
+          <h2 className="text-xl mb-2">
             Links
           </h2>
 
@@ -98,6 +109,56 @@ const Home: NextPage<Props> = ({
               </li>
             ))}
           </ul>
+        </div>
+      </div>
+
+      <div className="my-12">
+        <h2 className="text-xl mb-2">
+          Experiences
+        </h2>
+
+        <div>
+          {experiences.map((experience, i) => {
+            return (
+              <div key={i} className="pt-8 sm:pt-6">
+                <div className="flex flex-col-reverse sm:flex-row sm:gap-2 sm:items-center pb-1.5">
+                  <div className="font-bold">
+                    {experience.companyName}
+                  </div>
+                  <div className="text-gray-400 text-sm">
+                    <span>
+                      {experience.employmentType}
+                    </span>
+                    ・
+                    <span className="ml-1">
+                      {formatExperienceDate(experience.startDate)}
+                      〜
+                      {experience.endDate ? formatExperienceDate(experience.endDate) : ''}
+                    </span>
+                  </div>
+                </div>
+
+                {experience.projects.length > 0 ?
+                  <ul className="list-disc pl-7">
+                    {experience.projects.map((project, i) => (
+                      <li key={i} className="pb-1">
+                        {project.description}
+                        {project.technologies.length > 0 ?
+                          <div className="flex items-start flex-wrap">
+                            {project.technologies.map((technology, j) => (
+                              <span key={j} className="inline-block text-gray-500 rounded-lg text-xs mr-2">
+                                #{technology.name}
+                              </span>
+                            ))}
+                          </div>
+                        : ''}
+                      </li>
+                    ))}
+                  </ul>
+                : ''}
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

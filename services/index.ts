@@ -1,4 +1,5 @@
 import { apiClient } from "lib/httpClient"
+import { Experience, Project, Technology } from "type/API/experience"
 import { Profile } from "type/API/profile"
 import { Skill } from "type/API/skill"
 import { SocialLink } from "type/API/socialLink"
@@ -58,5 +59,35 @@ const mapWebLink = (data: any): WebLink => {
   return {
     name: data['name'],
     url: data['url'],
+  }
+}
+
+export const fetchExperiences = async(): Promise<Experience[]> => {
+  const res = await apiClient.get('/api/experiences')
+  return res.data.map(mapExperience)
+}
+
+const mapExperience = (data: any): Experience => {
+  return {
+    companyName: data['company_name'],
+    employmentType: data['employment_type'],
+    department: data['department'],
+    startDate: data['start_date'],
+    endDate: data['end_date'],
+    projects: data.projects.map(mapProject),
+  }
+}
+
+const mapProject = (data: any): Project => {
+  return {
+    description: data['description'],
+    technologies: data.technologies.map(mapTechnology),
+  }
+}
+
+const mapTechnology = (data: any): Technology => {
+  return {
+    name: data['name'],
+    versions: data['versions'],
   }
 }
