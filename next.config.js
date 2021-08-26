@@ -2,7 +2,9 @@
 module.exports = {
   reactStrictMode: true,
   env: {
-    API_BASE_URL: process.env.API_BASE_URL,
     SITE_URL: process.env.SITE_URL,
+    SITE_NAME: process.env.SITE_NAME,
+
+    OGP_IMAGE_URL: process.env.OGP_IMAGE_URL,
   },
 }

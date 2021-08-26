@@ -9,9 +9,9 @@ import {
 } from 'services'
 import Image from 'next/image'
 import { formatExperienceDate } from 'lib/date'
-import Head from 'next/head'
 import Footer from 'components/Footer'
-import { FC } from 'react'
+import CommonHeadMeta from 'components/CommonHeadMeta'
+import ProfileHeadMeta from 'components/ProfileHeadMeta'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -35,34 +35,7 @@ export const getStaticProps = async () => {
   }
 }
 
-type PageHeadProps = {
-  title: string
-  firstName: string
-  lastName: string
-  username: string
-}
-const PageHead: FC<PageHeadProps> = ({
-  title,
-  firstName,
-  lastName,
-  username,
-}) => {
-  return (
-    <Head>
-      <title>{title}</title>
-      <meta property="og:title" content={title} />
-      <meta property="og:image" content={`${process.env.SITE_URL}/images/og/1.jpg`} />
-      <meta property="og:image:type" content="image/jpeg" />
-      <meta property="og:url" content={process.env.SITE_URL} />
-      <meta property="og:site_name" content={title} />
-      <meta property="og:type" content="profile" />
-      <meta property="profile:first_name" content={firstName} />
-      <meta property="profile:last_name" content={lastName} />
-      <meta property="profile:username" content={username} />
-      <meta property="profile:gender" content="male" />
-    </Head>
-  )
-}
+const title = 'About me'
 
 const Home: NextPage<Props> = ({
   profile,
@@ -73,8 +46,8 @@ const Home: NextPage<Props> = ({
 }) => {
   return (
     <>
-      <PageHead
-        title={`About me | ${profile.fullNameKanji}`}
+      <CommonHeadMeta title={title} />
+      <ProfileHeadMeta
         firstName={profile.givenNameKanji}
         lastName={profile.familyNameKanji}
         username={profile.nickname}
@@ -82,7 +55,7 @@ const Home: NextPage<Props> = ({
 
       <main className="max-w-screen-md mx-auto my-0 pt-8 px-4">
         <h1 className="text-3xl">
-          About me
+          {title}
         </h1>
 
         <div className="flex flex-col sm:flex-row mt-12">
