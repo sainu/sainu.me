@@ -61,7 +61,7 @@ const Home: NextPage<Props> = ({
             {profile.job}
           </p>
           <p className="text-2xl">
-            {profile.nickname}
+            {profile.givenNameEn} {profile.familyNameEn}
           </p>
           <p className="">
             {profile.bio}
