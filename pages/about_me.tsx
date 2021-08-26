@@ -46,7 +46,7 @@ const Home: NextPage<Props> = ({
 }) => {
   return (
     <>
-      <CommonHeadMeta title={title} />
+      <CommonHeadMeta title={title} path='/about_me' />
       <ProfileHeadMeta
         firstName={profile.givenNameKanji}
         lastName={profile.familyNameKanji}
