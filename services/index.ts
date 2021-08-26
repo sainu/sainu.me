@@ -1,9 +1,9 @@
 import { apiClient } from "lib/httpClient"
-import { Experience, Project, Technology } from "type/API/experience"
-import { Profile } from "type/API/profile"
-import { Skill } from "type/API/skill"
-import { SocialLink } from "type/API/socialLink"
-import { WebLink } from "type/API/webLink"
+import { Experience, Project, Technology } from "type/api/experience"
+import { Profile } from "type/api/profile"
+import { Skill } from "type/api/skill"
+import { SocialLink } from "type/api/socialLink"
+import { WebLink } from "type/api/webLink"
 
 export const fetchProfile = async (): Promise<Profile> => {
   const res = await apiClient.get('/api/profile')
