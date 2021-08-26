@@ -9,6 +9,7 @@ import {
 } from 'services'
 import Image from 'next/image'
 import { formatExperienceDate } from 'lib/date'
+import Head from 'next/head'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -39,8 +40,26 @@ const Home: NextPage<Props> = ({
   webLinks,
   experiences,
 }) => {
+  const siteName = `プロフィール | ${profile.fullNameKanji}`
+  const description = `${profile.fullNameKanji}（${profile.fullNameKana}）のプロフィールページです。`
+
   return (
     <div className="max-w-screen-md mx-auto my-0 pt-8 px-4">
+      <Head>
+        <title>{siteName}</title>
+        <meta property="og:title" content={siteName} />
+        <meta property="og:image" content={`${process.env.SITE_URL}/images/og/1.jpg`} />
+        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:url" content={process.env.SITE_URL} />
+        <meta property="og:description" content={description} />
+        <meta property="og:site_name" content={siteName} />
+        <meta property="og:type" content="profile" />
+        <meta property="profile:first_name" content={profile.givenNameKanji} />
+        <meta property="profile:last_name" content={profile.familyNameKanji} />
+        <meta property="profile:username" content={profile.nickname} />
+        <meta property="profile:gender" content="male" />
+      </Head>
+
       <h1 className="text-3xl">
         About me
       </h1>
