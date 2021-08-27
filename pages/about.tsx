@@ -30,7 +30,7 @@ export const getStaticProps = async () => {
 
 const title = 'About me'
 
-const Home: NextPage<Props> = ({
+const About: NextPage<Props> = ({
   profile,
   socialLinks,
 }) => {
@@ -74,4 +74,4 @@ const Home: NextPage<Props> = ({
   )
 }
 
-export default Home
+export default About
