@@ -2,7 +2,7 @@ import { FC } from "react"
 import Head from 'next/head'
 
 type Props = {
-  title: string
+  title?: string
   imageUrl?: string
   path: string
   siteName?: string
@@ -16,7 +16,7 @@ const CommonHeadMeta: FC<Props> = ({
   siteName = process.env.SITE_NAME,
   delimiter = '|',
 }) => {
-  const titleAndSiteName = `${title} ${delimiter} ${siteName}`
+  const titleAndSiteName = title ? `${title} ${delimiter} ${siteName}` : siteName
 
   return (
     <Head>
