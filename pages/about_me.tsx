@@ -1,6 +1,7 @@
 import type { InferGetStaticPropsType, NextPage } from 'next'
 import {
   fetchProfile,
+  fetchSocialLinks,
 } from 'services'
 import Image from 'next/image'
 import Footer from 'components/Footer'
@@ -8,17 +9,21 @@ import CommonHeadMeta from 'components/CommonHeadMeta'
 import ProfileHeadMeta from 'components/ProfileHeadMeta'
 import { ArticleLayout } from 'components/ArticleLayout'
 import { StaticPageTitle } from 'components/StaticPageTitle'
+import { SocialIconLink } from 'components/SocialIconLink'
+import { SocialIconLinkList } from 'components/SocialIconLinkList'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 export const getStaticProps = async () => {
   const responses = await Promise.all([
     fetchProfile(),
+    fetchSocialLinks(),
   ])
 
   return {
     props: {
       profile: responses[0],
+      socialLinks: responses[1],
     }
   }
 }
@@ -27,6 +32,7 @@ const title = 'About me'
 
 const Home: NextPage<Props> = ({
   profile,
+  socialLinks,
 }) => {
   return (
     <>
@@ -42,9 +48,9 @@ const Home: NextPage<Props> = ({
 
         <div className="flex flex-col sm:flex-row mt-12">
           <div className="flex-shrink-0">
-            <div className="flex justify-center pb-5 sm:items-start">
+            <div className="flex pb-5 sm:items-start">
               <Image
-                className="rounded-full sm:rounded-none"
+                className="rounded-full"
                 src={'/images/profileImage.jpg'}
                 alt={profile.nickname}
                 width={100}
@@ -52,15 +58,21 @@ const Home: NextPage<Props> = ({
             </div>
           </div>
           <div className="px-0 sm:px-4">
-            <p className="text-gray-400">
+            <div className="text-gray-400">
               {profile.job}
-            </p>
-            <p className="text-2xl">
+            </div>
+            <div className="text-xl font-bold">
               {profile.givenNameEn} {profile.familyNameEn}
-            </p>
-            <p className="">
-              {profile.bio}
-            </p>
+            </div>
+            <div>{profile.bio}</div>
+
+            <div className="mt-4">
+              <SocialIconLinkList>
+                {socialLinks.map((socialLink, i) => (
+                  <SocialIconLink key={i} socialLink={socialLink} />
+                ))}
+              </SocialIconLinkList>
+            </div>
           </div>
         </div>
       </ArticleLayout>
