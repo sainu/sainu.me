@@ -12,7 +12,7 @@ export const GlobalHeader: FC<Props> = () => {
   const router = useRouter()
 
   return (
-    <header className="p-2 w-min max-w-xs sm:px-4 sm:py-8 h-screen sticky flex flex-col items-center border-r sm:border-none transition-all">
+    <header className="p-2 w-min max-w-xs sm:px-4 sm:py-8 h-screen sticky top-0 flex flex-col items-center border-r sm:border-none transition-all">
       <div className='inline-flex mb-4'>
         <Link href='/'>
           <a className="p-3 rounded-full hover:bg-gray-50">

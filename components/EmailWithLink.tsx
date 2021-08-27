@@ -11,7 +11,7 @@ export const EmailWithLink: FC<Props> = ({
 }) => {
   return (
     <Link href={`mailto:${email}`}>
-      <a className="px-4 rounded-full flex flex-row items-center gap-1 hover:shadow-md">
+      <a className="sm:px-4 sm:rounded-full flex items-center gap-1 sm:hover:shadow-md hover:underline sm:hover:no-underline">
         <EnvelopeIcon width={16} height={16} />
         {email}
       </a>

@@ -59,7 +59,7 @@ const About: NextPage<Props> = ({
             <div>{profile.bio}</div>
           </div>
 
-          <div className="flex gap-3 flex-col sm:flex-row-reverse sm:justify-end">
+          <div className="flex gap-3 flex-col flex-wrap sm:flex-row-reverse sm:justify-end">
             <EmailWithLink email={profile.email} />
 
             <SocialIconLinkList>
