@@ -9,7 +9,7 @@ type Props = {
 
 export const ArticleLayout: FC<Props> = ({ profile, children }) => {
   return (
-    <div className='flex flex-row justify-center h-screen overflow-hidden'>
+    <div className='flex flex-row justify-start sm:justify-center h-screen overflow-hidden transition-all '>
       <GlobalHeader />
 
       <main className="max-w-screen-sm my-0 pt-8 px-4 bg-local overflow-y-scroll">
