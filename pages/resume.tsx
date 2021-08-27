@@ -3,7 +3,7 @@ import { ArticleLayout } from "components/ArticleLayout";
 import CommonHeadMeta from "components/CommonHeadMeta";
 import { StaticPageTitle } from "components/StaticPageTitle";
 import { InferGetStaticPropsType, NextPage } from "next";
-import { fetchExperiences, fetchSkills } from 'services'
+import { fetchExperiences, fetchProfile, fetchSkills } from 'services'
 import { ExperienceList } from "components/ExperienceList";
 import { ExperienceListItem } from "components/ExperienceListItem";
 import { StaticPageSection } from "components/StaticPageSection";
@@ -17,12 +17,14 @@ export const getStaticProps = async () => {
   const responses = await Promise.all([
     fetchSkills(),
     fetchExperiences(),
+    fetchProfile(),
   ])
 
   return {
     props: {
       skills: responses[0],
       experiences: responses[1],
+      profile: responses[2],
     }
   }
 }
@@ -32,36 +34,35 @@ const pageTitle = 'Resume'
 const Resume: NextPage<Props> = ({
   skills,
   experiences,
+  profile,
 }) => {
   return (
-    <>
+    <ArticleLayout profile={profile}>
       <CommonHeadMeta title={pageTitle} path='/resume' />
       <ArticleHeadMeta />
 
-      <ArticleLayout>
-        <StaticPageTitle>{pageTitle}</StaticPageTitle>
+      <StaticPageTitle>{pageTitle}</StaticPageTitle>
 
-        <StaticPageSection>
-          <SectionHeading>Skills</SectionHeading>
+      <StaticPageSection>
+        <SectionHeading>Skills</SectionHeading>
 
-          <SkillList>
-            {skills.map(skill => (
-              <SkillListItem key={skill.name} skill={skill} />
-            ))}
-          </SkillList>
-        </StaticPageSection>
+        <SkillList>
+          {skills.map(skill => (
+            <SkillListItem key={skill.name} skill={skill} />
+          ))}
+        </SkillList>
+      </StaticPageSection>
 
-        <StaticPageSection>
-          <SectionHeading>Experiences</SectionHeading>
+      <StaticPageSection>
+        <SectionHeading>Experiences</SectionHeading>
 
-          <ExperienceList>
-            {experiences.map((experience, i) => (
-              <ExperienceListItem key={i} experience={experience} />
-            ))}
-          </ExperienceList>
-        </StaticPageSection>
-      </ArticleLayout>
-    </>
+        <ExperienceList>
+          {experiences.map((experience, i) => (
+            <ExperienceListItem key={i} experience={experience} />
+          ))}
+        </ExperienceList>
+      </StaticPageSection>
+    </ArticleLayout>
   )
 }
 
