@@ -36,7 +36,7 @@ class MyDocument extends Document<{ prefix: string | undefined }> {
           <link rel="icon" href="/favicon.ico" />
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
           <meta property="og:locale" content="ja_JP" />
-          <link rel="canonical" href={process.env.SITE_URL} />
+          <link rel="canonical" href={process.env.NEXT_PUBLIC_SITE_URL} />
         </Head>
         <body>
           <Main />

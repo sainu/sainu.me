@@ -25,7 +25,7 @@ const ArticleHeadMeta: FC<Props> = ({
       {expirationTime ?
         <meta property="article:expiration_time" content={formatMetaPublishedTime(expirationTime)} />
       : undefined}
-      <meta property="article:author" content={`${process.env.SITE_URL}/about`} />
+      <meta property="article:author" content={`${process.env.NEXT_PUBLIC_SITE_URL}/about`} />
       {section ?
         <meta property="article:section" content={section} />
       : undefined}
