@@ -1,0 +1,68 @@
+import ArticleHeadMeta from "components/ArticleHeadMeta";
+import { ArticleLayout } from "components/ArticleLayout";
+import CommonHeadMeta from "components/CommonHeadMeta";
+import { StaticPageTitle } from "components/StaticPageTitle";
+import { InferGetStaticPropsType, NextPage } from "next";
+import { fetchExperiences, fetchSkills } from 'services'
+import { ExperienceList } from "components/ExperienceList";
+import { ExperienceListItem } from "components/ExperienceListItem";
+import { StaticPageSection } from "components/StaticPageSection";
+import { SkillList } from "components/SkillList";
+import { SkillListItem } from "components/SkillListItem";
+import { SectionHeading } from "components/SectionHeading";
+
+type Props = InferGetStaticPropsType<typeof getStaticProps>
+
+export const getStaticProps = async () => {
+  const responses = await Promise.all([
+    fetchSkills(),
+    fetchExperiences(),
+  ])
+
+  return {
+    props: {
+      skills: responses[0],
+      experiences: responses[1],
+    }
+  }
+}
+
+const pageTitle = 'Resume'
+
+const Resume: NextPage<Props> = ({
+  skills,
+  experiences,
+}) => {
+  return (
+    <>
+      <CommonHeadMeta title={pageTitle} path='/resume' />
+      <ArticleHeadMeta />
+
+      <ArticleLayout>
+        <StaticPageTitle>{pageTitle}</StaticPageTitle>
+
+        <StaticPageSection>
+          <SectionHeading>Skills</SectionHeading>
+
+          <SkillList>
+            {skills.map(skill => (
+              <SkillListItem key={skill.name} skill={skill} />
+            ))}
+          </SkillList>
+        </StaticPageSection>
+
+        <StaticPageSection>
+          <SectionHeading>Experiences</SectionHeading>
+
+          <ExperienceList>
+            {experiences.map((experience, i) => (
+              <ExperienceListItem key={i} experience={experience} />
+            ))}
+          </ExperienceList>
+        </StaticPageSection>
+      </ArticleLayout>
+    </>
+  )
+}
+
+export default Resume
