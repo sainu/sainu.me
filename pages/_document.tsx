@@ -8,7 +8,7 @@ class MyDocument extends Document<{ prefix: string | undefined }> {
     if (this.useOgp(ctx.pathname)) {
       prefix.push('og: http://ogp.me/ns#')
       if (ctx.pathname == '/') prefix.push('website: http://ogp.me/ns/website#')
-      if (ctx.pathname == '/about_me') prefix.push('profile: http://ogp.me/ns/profile#')
+      if (ctx.pathname == '/about') prefix.push('profile: http://ogp.me/ns/profile#')
       else prefix.push('article: http://ogp.me/ns/article#')
     }
 
