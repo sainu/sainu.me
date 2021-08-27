@@ -11,6 +11,7 @@ import { ArticleLayout } from 'components/ArticleLayout'
 import { StaticPageTitle } from 'components/StaticPageTitle'
 import { SocialIconLink } from 'components/SocialIconLink'
 import { SocialIconLinkList } from 'components/SocialIconLinkList'
+import { EmailWithLink } from 'components/EmailWithLink'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -46,9 +47,9 @@ const Home: NextPage<Props> = ({
       <ArticleLayout>
         <StaticPageTitle>{title}</StaticPageTitle>
 
-        <div className="flex flex-col sm:flex-row mt-12">
+        <div className="flex flex-col sm:flex-row mt-12 gap-6">
           <div className="flex-shrink-0">
-            <div className="flex pb-5 sm:items-start">
+            <div className="flex sm:items-start">
               <Image
                 className="rounded-full"
                 src={'/images/profileImage.jpg'}
@@ -57,16 +58,17 @@ const Home: NextPage<Props> = ({
                 height={100} />
             </div>
           </div>
-          <div className="px-0 sm:px-4">
-            <div className="text-gray-400">
-              {profile.job}
-            </div>
-            <div className="text-xl font-bold">
-              {profile.givenNameEn} {profile.familyNameEn}
-            </div>
-            <div>{profile.bio}</div>
 
-            <div className="mt-4">
+          <div className="flex flex-col gap-6">
+            <div>
+              <div className="text-gray-400">{profile.job}</div>
+              <div className="text-xl font-bold">{profile.givenNameEn} {profile.familyNameEn}</div>
+              <div>{profile.bio}</div>
+            </div>
+
+            <div className="flex gap-3 flex-col sm:flex-row-reverse sm:justify-end">
+              <EmailWithLink email={profile.email} />
+
               <SocialIconLinkList>
                 {socialLinks.map((socialLink, i) => (
                   <SocialIconLink key={i} socialLink={socialLink} />
