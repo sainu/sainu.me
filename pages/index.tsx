@@ -1,7 +1,7 @@
 import type { InferGetStaticPropsType, NextPage } from 'next'
 import { fetchProfile } from 'services'
 import CommonHeadMeta from 'components/CommonHeadMeta'
-import { ArticleLayout } from 'components/ArticleLayout'
+import { DefaultLayout } from 'components/DefaultLayout'
 import { WebsiteHeadMeta } from 'components/WebsiteHeadMeta'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
@@ -22,10 +22,10 @@ const Home: NextPage<Props> = ({
   profile,
 }) => {
   return (
-    <ArticleLayout profile={profile}>
+    <DefaultLayout profile={profile}>
       <CommonHeadMeta path='/' />
       <WebsiteHeadMeta />
-    </ArticleLayout>
+    </DefaultLayout>
   )
 }
 

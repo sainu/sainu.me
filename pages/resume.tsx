@@ -1,5 +1,5 @@
 import ArticleHeadMeta from "components/ArticleHeadMeta";
-import { ArticleLayout } from "components/ArticleLayout";
+import { DefaultLayout } from "components/DefaultLayout";
 import CommonHeadMeta from "components/CommonHeadMeta";
 import { StaticPageTitle } from "components/StaticPageTitle";
 import { InferGetStaticPropsType, NextPage } from "next";
@@ -37,7 +37,7 @@ const Resume: NextPage<Props> = ({
   profile,
 }) => {
   return (
-    <ArticleLayout profile={profile}>
+    <DefaultLayout profile={profile}>
       <CommonHeadMeta title={pageTitle} path='/resume' />
       <ArticleHeadMeta />
 
@@ -62,7 +62,7 @@ const Resume: NextPage<Props> = ({
           ))}
         </ExperienceList>
       </StaticPageSection>
-    </ArticleLayout>
+    </DefaultLayout>
   )
 }
 

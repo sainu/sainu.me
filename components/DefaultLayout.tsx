@@ -7,7 +7,7 @@ type Props = {
   profile: Profile
 }
 
-export const ArticleLayout: FC<Props> = ({ profile, children }) => {
+export const DefaultLayout: FC<Props> = ({ profile, children }) => {
   return (
     <div className='flex justify-start sm:justify-center transition-all '>
       <GlobalHeader />

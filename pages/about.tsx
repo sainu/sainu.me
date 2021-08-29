@@ -5,7 +5,7 @@ import {
 } from 'services'
 import CommonHeadMeta from 'components/CommonHeadMeta'
 import ProfileHeadMeta from 'components/ProfileHeadMeta'
-import { ArticleLayout } from 'components/ArticleLayout'
+import { DefaultLayout } from 'components/DefaultLayout'
 import { StaticPageTitle } from 'components/StaticPageTitle'
 import { SocialIconLink } from 'components/SocialIconLink'
 import { SocialIconLinkList } from 'components/SocialIconLinkList'
@@ -35,7 +35,7 @@ const About: NextPage<Props> = ({
   socialLinks,
 }) => {
   return (
-    <ArticleLayout profile={profile}>
+    <DefaultLayout profile={profile}>
       <CommonHeadMeta title={title} path='/about' />
       <ProfileHeadMeta
         firstName={profile.givenNameKanji}
@@ -70,7 +70,7 @@ const About: NextPage<Props> = ({
           </div>
         </div>
       </div>
-    </ArticleLayout>
+    </DefaultLayout>
   )
 }
 
