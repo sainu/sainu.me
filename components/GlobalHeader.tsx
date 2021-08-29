@@ -2,6 +2,7 @@ import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { FC } from "react";
 import { GlobalNavigationLink } from "./GlobalNavigationLink";
+import { BookIcon } from "./icons/BookIcon";
 import { DocumentIcon } from "./icons/DocumentIcon";
 import { PersonIcon } from "./icons/PersonIcon";
 import { ProfileImage } from "./ProfileImage";
@@ -24,6 +25,14 @@ export const GlobalHeader: FC<Props> = () => {
       </div>
 
       <nav className="inline-flex flex-col items-end sm:items-start w-min">
+        <GlobalNavigationLink
+          href='/posts/page/1'
+          active={router.pathname.startsWith('/posts/page/')}
+          icon={<BookIcon width={28} height={28} />}
+          activeIcon={<BookIcon width={28} height={28} fill={true} />}
+        >
+          Posts
+        </GlobalNavigationLink>
         <GlobalNavigationLink
           href='/about'
           active={router.pathname === '/about'}
