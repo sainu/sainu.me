@@ -6,6 +6,10 @@ html {
   font-size: 14px;
 }
 
+.animation-forwards {
+  animation-fill-mode: forwards;
+}
+
 .bp {
   font-size: 1.25rem;
   line-height: 2.25rem;

@@ -17,11 +17,11 @@ export const GlobalNavigationLink: FC<Props> = ({
 }) => {
   return (
     <Link href={href}>
-      <a className='p-3 sm:px-4 sm:py-3 min-w-max flex items-center rounded-full text-xl hover:bg-gray-50'>
+      <a className='p-3 sm:px-4 sm:py-3 rounded-full transition-all text-xl bg-white shadow sm:shadow-none hover:bg-gray-50 w-20 h-20 sm:min-w-max sm:h-auto flex flex-col sm:flex-row items-center justify-center'>
         <span className='w-8'>
           {active ? activeIcon : icon}
         </span>
-        <span className={`ml-2 hidden sm:inline ${active ? 'font-bold' : ''}`}>
+        <span className={`ml-none sm:ml-2 text-xs sm:text-base sm:inline ${active ? 'font-bold' : ''}`}>
           {children}
         </span>
       </a>
