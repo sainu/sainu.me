@@ -56,7 +56,7 @@ const Posts: NextPage<Props> = ({
 
       <StaticPageTitle>{pageTitle}</StaticPageTitle>
 
-      <PostList>
+      <PostList gapClass='gap-4'>
         {posts.data.map(post => (
           <PostListItem key={post.slug} post={post} />
         ))}

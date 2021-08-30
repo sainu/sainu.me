@@ -1,5 +1,3 @@
-import { Meta } from "lib/markdown"
-
 export type Post = {
   slug: string
   title: string
@@ -7,7 +5,7 @@ export type Post = {
   content: string
 }
 
-export interface PostMdMeta extends Meta {
+export interface PostMdMeta {
   title: string
   published_at: string
 }

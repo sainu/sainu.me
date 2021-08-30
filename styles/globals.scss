@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 14px;
+}
+
+.bp {
+  font-size: 1.25rem;
+  line-height: 2.25rem;
+
+  h1 {
+    // text-3xl
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    // font-bold
+    font-weight: bold;
+    // mt-16
+    margin-top: 4rem;
+    // mb-12
+    margin-bottom: 3rem;
+  }
+
+  h2 {
+    // text-2xl
+    font-size: 1.5rem;
+    line-height: 2rem;
+    // font-bold
+    font-weight: bold;
+    // mt-12
+    margin-top: 3rem;
+    // mb-8
+    margin-bottom: 2rem;
+  }
+
+  p {
+    // my-8
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  a {
+    color: rgb(0, 119, 204);
+    text-decoration: underline;
+    &:hover {
+      color: rgb(0, 149, 255)
+    }
+  }
+
+  ul,
+  ol {
+    // pl-8
+    padding-left: 2rem;
+  }
+
+  ul {
+    // list-disc
+    list-style-type: disc;
+  }
+
+  ol {
+    // list-decimal
+    list-style-type: decimal;
+  }
+}

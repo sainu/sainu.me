@@ -1,9 +1,16 @@
 import { FC } from "react"
 
-export const PostList: FC = ({ children }) => {
+type Props = {
+  gapClass: string
+}
+
+export const PostList: FC<Props> = ({
+  gapClass = 'gap-1',
+  children,
+}) => {
   return (
-    <section className='flex flex-col gap-4'>
+    <div className={`flex flex-col ${gapClass}`}>
       {children}
-    </section>
+    </div>
   )
 }
