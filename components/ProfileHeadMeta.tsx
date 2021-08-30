@@ -8,7 +8,7 @@ type Props = {
   username: string
 }
 
-const ProfileHeadMeta: FC<Props> = ({
+export const ProfileHeadMeta: FC<Props> = ({
   firstName,
   lastName,
   username,
@@ -23,5 +23,3 @@ const ProfileHeadMeta: FC<Props> = ({
     </Head>
   )
 }
-
-export default ProfileHeadMeta

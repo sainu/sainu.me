@@ -1,6 +1,6 @@
 import type { InferGetStaticPropsType, NextPage } from 'next'
 import { fetchPosts, fetchProfile, fetchSkills } from 'services'
-import CommonHeadMeta from 'components/CommonHeadMeta'
+import { CommonHeadMeta } from 'components/CommonHeadMeta'
 import { DefaultLayout } from 'components/DefaultLayout'
 import { WebsiteHeadMeta } from 'components/WebsiteHeadMeta'
 import { PostList } from 'components/PostList'
@@ -34,7 +34,7 @@ export const getStaticProps = async () => {
   }
 }
 
-const Home: NextPage<Props> = ({
+const HomePage: NextPage<Props> = ({
   profile,
   posts,
   skills,
@@ -81,4 +81,4 @@ const Home: NextPage<Props> = ({
   )
 }
 
-export default Home
+export default HomePage

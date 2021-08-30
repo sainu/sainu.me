@@ -4,7 +4,7 @@ type Props = {
   copyRight: string,
 }
 
-const Footer: FC<Props> = ({
+export const Footer: FC<Props> = ({
   copyRight,
 }) => {
   return (
@@ -13,4 +13,3 @@ const Footer: FC<Props> = ({
     </footer>
   )
 }
-export default Footer

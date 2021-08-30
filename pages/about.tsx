@@ -3,8 +3,8 @@ import {
   fetchProfile,
   fetchSocialLinks,
 } from 'services'
-import CommonHeadMeta from 'components/CommonHeadMeta'
-import ProfileHeadMeta from 'components/ProfileHeadMeta'
+import { CommonHeadMeta } from 'components/CommonHeadMeta'
+import { ProfileHeadMeta } from 'components/ProfileHeadMeta'
 import { DefaultLayout } from 'components/DefaultLayout'
 import { PageTitle } from 'components/PageTitle'
 import { SocialIconLink } from 'components/SocialIconLink'
@@ -30,7 +30,7 @@ export const getStaticProps = async () => {
 
 const title = 'About'
 
-const About: NextPage<Props> = ({
+const AboutPage: NextPage<Props> = ({
   profile,
   socialLinks,
 }) => {
@@ -74,4 +74,4 @@ const About: NextPage<Props> = ({
   )
 }
 
-export default About
+export default AboutPage

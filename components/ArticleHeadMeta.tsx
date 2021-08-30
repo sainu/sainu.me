@@ -10,7 +10,7 @@ type Props = {
   tag?: string[]
 }
 
-const ArticleHeadMeta: FC<Props> = ({
+export const ArticleHeadMeta: FC<Props> = ({
   publishedTime,
   expirationTime,
   section,
@@ -37,5 +37,3 @@ const ArticleHeadMeta: FC<Props> = ({
     </Head>
   )
 }
-
-export default ArticleHeadMeta

@@ -1,6 +1,6 @@
-import ArticleHeadMeta from "components/ArticleHeadMeta"
+import { ArticleHeadMeta } from "components/ArticleHeadMeta"
 import { DefaultLayout } from "components/DefaultLayout"
-import CommonHeadMeta from "components/CommonHeadMeta"
+import { CommonHeadMeta } from "components/CommonHeadMeta"
 import { PageTitle } from "components/PageTitle"
 import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next"
 import React from "react"
@@ -44,7 +44,7 @@ export const getStaticPaths = async() => {
 
 const pageTitle = 'ブログ'
 
-const Posts: NextPage<Props> = ({
+const PostsPage: NextPage<Props> = ({
   profile,
   posts,
   currentPage,
@@ -69,4 +69,4 @@ const Posts: NextPage<Props> = ({
   )
 }
 
-export default Posts
+export default PostsPage

@@ -9,7 +9,7 @@ type Props = {
   delimiter?: string
 }
 
-const CommonHeadMeta: FC<Props> = ({
+export const CommonHeadMeta: FC<Props> = ({
   title,
   path,
   imageUrl = process.env.NEXT_PUBLIC_OGP_IMAGE_URL,
@@ -28,4 +28,3 @@ const CommonHeadMeta: FC<Props> = ({
     </Head>
   )
 }
-export default CommonHeadMeta

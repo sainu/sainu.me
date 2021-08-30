@@ -1,5 +1,5 @@
 import { FC } from "react"
-import Footer from 'components/Footer'
+import { Footer } from 'components/Footer'
 import { Profile } from "type/api/profile"
 import { GlobalHeader } from "./GlobalHeader"
 

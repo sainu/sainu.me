@@ -1,6 +1,6 @@
-import ArticleHeadMeta from "components/ArticleHeadMeta";
+import { ArticleHeadMeta } from "components/ArticleHeadMeta";
 import { DefaultLayout } from "components/DefaultLayout";
-import CommonHeadMeta from "components/CommonHeadMeta";
+import { CommonHeadMeta } from "components/CommonHeadMeta";
 import { PageTitle } from "components/PageTitle";
 import { InferGetStaticPropsType, NextPage } from "next";
 import { fetchExperiences, fetchProfile, fetchSkills } from 'services'
@@ -31,7 +31,7 @@ export const getStaticProps = async () => {
 
 const pageTitle = 'Resume'
 
-const Resume: NextPage<Props> = ({
+const ResumePage: NextPage<Props> = ({
   skills,
   experiences,
   profile,
@@ -76,4 +76,4 @@ const Resume: NextPage<Props> = ({
   )
 }
 
-export default Resume
+export default ResumePage
