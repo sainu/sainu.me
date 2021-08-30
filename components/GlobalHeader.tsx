@@ -69,7 +69,7 @@ export const GlobalHeader: FC<Props> = () => {
             icon={<PersonIcon width={28} height={28} />}
             activeIcon={<PersonIcon width={28} height={28} fill={true} />}
           >
-            About me
+            About
           </GlobalNavigationLink>
         </div>
         <div className={linkClass.join(' ')}>

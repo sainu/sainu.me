@@ -28,7 +28,7 @@ export const getStaticProps = async () => {
   }
 }
 
-const title = 'About me'
+const title = 'About'
 
 const About: NextPage<Props> = ({
   profile,
