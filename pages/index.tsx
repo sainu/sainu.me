@@ -6,8 +6,8 @@ import { WebsiteHeadMeta } from 'components/WebsiteHeadMeta'
 import { PostList } from 'components/PostList'
 import { PostListItem } from 'components/PostListItem'
 import React from 'react'
-import { StaticPageSection } from 'components/StaticPageSection'
-import { SectionHeading } from 'components/SectionHeading'
+import { Section } from 'components/Section'
+import { SectionTitle } from 'components/SectionTitle'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -37,15 +37,19 @@ const Home: NextPage<Props> = ({
       <CommonHeadMeta path='/' />
       <WebsiteHeadMeta />
 
-      <StaticPageSection>
-        <SectionHeading>最新の投稿</SectionHeading>
+      <Section>
+        <section>
+          <SectionTitle>
+            <h1>最新の投稿</h1>
+          </SectionTitle>
 
-        <PostList>
-          {posts.data.map(post => (
-            <PostListItem key={post.slug} post={post} />
-          ))}
-        </PostList>
-      </StaticPageSection>
+          <PostList>
+            {posts.data.map(post => (
+              <PostListItem key={post.slug} post={post} />
+            ))}
+          </PostList>
+        </section>
+      </Section>
     </DefaultLayout>
   )
 }

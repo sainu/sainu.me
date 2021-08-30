@@ -65,11 +65,13 @@ const PostPage: NextPage<Props> = ({
         <h1 className="text-3xl font-bold">
           {post.title}
         </h1>
+
         <div className='text-gray-400 text-sm font-bold'>
           <time dateTime={formatISO(post.publishedAt)}>
             {formatPostPublishedTime(post.publishedAt)}
           </time>
         </div>
+
         <div
           className='bp'
           dangerouslySetInnerHTML={{ __html: post.content }} />

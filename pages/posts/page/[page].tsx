@@ -1,7 +1,7 @@
 import ArticleHeadMeta from "components/ArticleHeadMeta"
 import { DefaultLayout } from "components/DefaultLayout"
 import CommonHeadMeta from "components/CommonHeadMeta"
-import { StaticPageTitle } from "components/StaticPageTitle"
+import { PageTitle } from "components/PageTitle"
 import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next"
 import React from "react"
 import { fetchPosts, fetchProfile } from "services"
@@ -54,7 +54,9 @@ const Posts: NextPage<Props> = ({
       <CommonHeadMeta title={pageTitle} path='/posts' />
       <ArticleHeadMeta />
 
-      <StaticPageTitle>{pageTitle}</StaticPageTitle>
+      <PageTitle>
+        <h1>{pageTitle}</h1>
+      </PageTitle>
 
       <PostList gapClass='gap-4'>
         {posts.data.map(post => (

@@ -6,7 +6,7 @@ import {
 import CommonHeadMeta from 'components/CommonHeadMeta'
 import ProfileHeadMeta from 'components/ProfileHeadMeta'
 import { DefaultLayout } from 'components/DefaultLayout'
-import { StaticPageTitle } from 'components/StaticPageTitle'
+import { PageTitle } from 'components/PageTitle'
 import { SocialIconLink } from 'components/SocialIconLink'
 import { SocialIconLinkList } from 'components/SocialIconLinkList'
 import { EmailWithLink } from 'components/EmailWithLink'
@@ -43,7 +43,7 @@ const About: NextPage<Props> = ({
         username={profile.nickname}
       />
 
-      <StaticPageTitle>{title}</StaticPageTitle>
+      <PageTitle>{title}</PageTitle>
 
       <div className="flex flex-col sm:flex-row mt-12 gap-6">
         <div className="flex-shrink-0">
