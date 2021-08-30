@@ -12,7 +12,7 @@ type Props = {}
 const navClass = 'transition-all h-screen w-min max-w-xs' +
   ' fixed top-auto right-0 bottom-0 sm:sticky sm:top-0 sm:right-auto sm:bottom-auto' +
   ' p-2 sm:px-4 sm:py-8' +
-  ' inline-flex flex-col-reverse sm:flex-col items-center sm:items-start flex-end gap-2 sm:gap-0'
+  ' inline-flex flex-col-reverse sm:flex-col items-center sm:items-start flex-end'
 
 const navIcons = (pathname: string) => {
   return [
@@ -93,7 +93,7 @@ export const GlobalHeader: FC<Props> = () => {
         <Thumbnail onClick={() => setHideMenu(!hideMenu)} />
 
         {navIcons(router.pathname).map((icon, i) => (
-          <div key={i} className={mobileLinkClass}>{icon}</div>
+          <div key={i} className={mobileLinkClass + ' mb-2'}>{icon}</div>
         ))}
       </nav>
     </header>
