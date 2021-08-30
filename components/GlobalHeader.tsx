@@ -15,7 +15,7 @@ export const GlobalHeader: FC<Props> = () => {
   const navClass = ['transition-all h-screen w-min max-w-xs']
   navClass.push('fixed top-auto right-0 bottom-0 sm:sticky sm:top-0 sm:right-auto sm:bottom-auto')
   navClass.push('p-2 sm:px-4 sm:py-8')
-  navClass.push('inline-flex flex-col-reverse sm:flex-col items-center sm:items-start flex-end gap-4 sm:gap-0')
+  navClass.push('inline-flex flex-col-reverse sm:flex-col items-center sm:items-start flex-end gap-2')
 
   const [hideMenu, setHideMenu] = useState(true)
 
