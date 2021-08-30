@@ -49,8 +49,8 @@ const mapProfile = (data: any): Profile => {
 }
 
 export const fetchSkills = async (): Promise<Skill[]> => {
-  const res = await apiClient.get('/api/skills')
-  return res.data.map(mapSkill)
+  const res = await apiClient.get<any[]>('/api/skills')
+  return res.data.map(mapSkill).sort((a, b) => b.score - a.score)
 }
 
 const mapSkill = (data: any): Skill => {
