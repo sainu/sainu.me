@@ -14,7 +14,11 @@ import { SectionTitle } from "components/SectionTitle";
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
 export const getStaticProps = async () => {
-  const responses = await Promise.all([
+  const [
+    skills,
+    experiences,
+    profile,
+  ] = await Promise.all([
     fetchSkills(),
     fetchExperiences(),
     fetchProfile(),
@@ -22,9 +26,9 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      skills: responses[0],
-      experiences: responses[1],
-      profile: responses[2],
+      skills,
+      experiences,
+      profile,
     }
   }
 }
