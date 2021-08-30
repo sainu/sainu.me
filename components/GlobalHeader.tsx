@@ -4,6 +4,7 @@ import { GlobalNavigationLink } from "./GlobalNavigationLink";
 import { BookIcon } from "./icons/BookIcon";
 import { DocumentIcon } from "./icons/DocumentIcon";
 import { HomeIcon } from "./icons/HomeIcon";
+import { LightningChargeIcon } from "./icons/LightningChargeIcon";
 import { PersonIcon } from "./icons/PersonIcon";
 import { ProfileImage } from "./ProfileImage";
 
@@ -36,6 +37,15 @@ const navIcons = (pathname: string) => {
     </GlobalNavigationLink>,
     <GlobalNavigationLink
       key='3'
+      href='/activities'
+      active={pathname === '/activities'}
+      icon={<LightningChargeIcon width={28} height={28} />}
+      activeIcon={<LightningChargeIcon width={28} height={28} fill={true} />}
+    >
+      Activities
+    </GlobalNavigationLink>,
+    <GlobalNavigationLink
+      key='4'
       href='/about'
       active={pathname === '/about'}
       icon={<PersonIcon width={28} height={28} />}
@@ -44,7 +54,7 @@ const navIcons = (pathname: string) => {
       About
     </GlobalNavigationLink>,
     <GlobalNavigationLink
-      key='4'
+      key='5'
       href='/resume'
       active={pathname === '/resume'}
       icon={<DocumentIcon width={28} height={28} />}
