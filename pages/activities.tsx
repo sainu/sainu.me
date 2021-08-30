@@ -6,19 +6,25 @@ import { Section } from "components/Section"
 import { SectionTitle } from "components/SectionTitle"
 import { InferGetStaticPropsType } from "next"
 import { FC } from "react"
-import { fetchProfile } from "services"
+import { fetchProfile, fetchQiitaPosts } from "services"
 import { EmbededTwitterTimeline } from "components/EmbededTwitterTimeline"
+import { QiitaPostList } from "components/QiitaPostList"
+import { QiitaPostListItem } from "components/QiitaPostListItem"
+import { MoreLink } from "components/MoreLink"
 
 export const getStaticProps = async() => {
   const [
     profile,
+    qiitaPosts,
   ] = await Promise.all([
     fetchProfile(),
+    fetchQiitaPosts(),
   ])
 
   return {
     props: {
       profile,
+      qiitaPosts: qiitaPosts.slice(0, 5),
     }
   }
 }
@@ -29,6 +35,7 @@ const pageTitle = 'アクティビティ'
 
 const ActivitiesPage: FC<Props> = ({
   profile,
+  qiitaPosts,
 }) => {
   return (
     <DefaultLayout profile={profile}>
@@ -46,6 +53,26 @@ const ActivitiesPage: FC<Props> = ({
           </SectionTitle>
 
           <EmbededTwitterTimeline />
+        </section>
+      </Section>
+
+      <Section>
+        <section>
+          <SectionTitle>
+            <h2>Qiita</h2>
+          </SectionTitle>
+
+          <QiitaPostList>
+            {qiitaPosts.map(qiitaPost => (
+              <article key={qiitaPost.id}>
+                <QiitaPostListItem qiitaPost={qiitaPost} />
+              </article>
+            ))}
+          </QiitaPostList>
+
+          <MoreLink href='https://qiita.com/sainu'>
+            他の投稿を見る
+          </MoreLink>
         </section>
       </Section>
     </DefaultLayout>

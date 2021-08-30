@@ -11,3 +11,11 @@ export const profileApiClient = axios.create({
     password: process.env.BASIC_AUTH_PASSWORD || 'secret',
   },
 })
+
+export const qiitaClient = axios.create({
+  baseURL: 'https://qiita.com',
+  timeout: 3 * 60 * 1000,
+  headers: {
+    'User-Agent': 'sainu.me'
+  },
+})

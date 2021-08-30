@@ -1,4 +1,4 @@
-import { profileApiClient } from "lib/httpClient"
+import { profileApiClient, qiitaClient } from "lib/httpClient"
 import { Experience, Project, Technology } from "type/api/experience"
 import { Post, PostMdMeta } from "type/api/post"
 import { Profile } from "type/api/profile"
@@ -9,6 +9,8 @@ import path from 'path'
 import fs from 'fs'
 import * as md from 'lib/markdown'
 import { DEFAULT_PER_PAGE, getTotalPages, paging } from "lib/pagination"
+import { parseStringPromise } from 'xml2js'
+import { QiitaPost } from "type/api/qiitaPost"
 
 type IndexParams = {
   page?: number
@@ -150,5 +152,21 @@ const mapPost = (slug: string, data: md.MarkdownParseResult<PostMdMeta>): Post =
     title: data.meta.title,
     publishedAt: data.meta.published_at,
     content: data.content,
+  }
+}
+
+export const fetchQiitaPosts = async(): Promise<QiitaPost[]> => {
+  const res = await qiitaClient.get('/sainu/feed')
+  const json = await parseStringPromise(res.data)
+  return json.feed.entry.map(mapQiitaPost)
+}
+
+const mapQiitaPost = (data: any): QiitaPost => {
+  return {
+    id: data['id'][0],
+    published: data['published'][0],
+    updated: data['updated'][0],
+    url: data['url'][0],
+    title: data['title'][0],
   }
 }

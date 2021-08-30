@@ -15,3 +15,7 @@ export const formatISO = (date: string): string => {
 export const formatPostPublishedTime = (date: string): string => {
   return dayjs(date).format('YYYY/MM/DD')
 }
+
+export const formatQiitaPostTime = (date: string): string => {
+  return dayjs(date).format('YYYY年MM月DD日')
+}
