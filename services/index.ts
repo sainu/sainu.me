@@ -1,4 +1,4 @@
-import { apiClient } from "lib/httpClient"
+import { profileApiClient } from "lib/httpClient"
 import { Experience, Project, Technology } from "type/api/experience"
 import { Post, PostMdMeta } from "type/api/post"
 import { Profile } from "type/api/profile"
@@ -25,7 +25,7 @@ type IndexResponse<T> = {
 }
 
 export const fetchProfile = async (): Promise<Profile> => {
-  const res = await apiClient.get('/api/profile')
+  const res = await profileApiClient.get('/api/profile')
   return mapProfile(res.data)
 }
 
@@ -49,7 +49,7 @@ const mapProfile = (data: any): Profile => {
 }
 
 export const fetchSkills = async (): Promise<Skill[]> => {
-  const res = await apiClient.get<any[]>('/api/skills')
+  const res = await profileApiClient.get<any[]>('/api/skills')
   return res.data.map(mapSkill).sort((a, b) => b.score - a.score)
 }
 
@@ -61,7 +61,7 @@ const mapSkill = (data: any): Skill => {
 }
 
 export const fetchSocialLinks = async (): Promise<SocialLink[]> => {
-  const res = await apiClient.get('/api/social_links')
+  const res = await profileApiClient.get('/api/social_links')
   return res.data.map(mapSocialLink)
 }
 
@@ -73,7 +73,7 @@ const mapSocialLink = (data: any): SocialLink => {
 }
 
 export const fetchWebLinks = async(): Promise<WebLink[]> => {
-  const res = await apiClient.get('/api/web_links')
+  const res = await profileApiClient.get('/api/web_links')
   return res.data.map(mapWebLink)
 }
 
@@ -85,7 +85,7 @@ const mapWebLink = (data: any): WebLink => {
 }
 
 export const fetchExperiences = async(): Promise<Experience[]> => {
-  const res = await apiClient.get('/api/experiences')
+  const res = await profileApiClient.get('/api/experiences')
   return res.data.map(mapExperience)
 }
 
