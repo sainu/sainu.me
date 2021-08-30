@@ -87,7 +87,7 @@ export const GlobalHeader: FC<Props> = () => {
   const router = useRouter()
   const [hideMenu, setHideMenu] = useState(true)
 
-  const mobileLinkClass = hideMenu ? 'animate-nav-link-fade-out animation-forwards' : 'animate-nav-link-fade-in'
+  const mobileLinkClass = hideMenu ? 'animate-nav-link-fade-out animation-forwards' : 'animate-nav-link-fade-in animation-forwards'
 
   return (
     <header className='z-10'>
