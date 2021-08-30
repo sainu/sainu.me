@@ -7,8 +7,8 @@ import { fetchExperiences, fetchProfile, fetchSkills } from 'services'
 import { ExperienceList } from "components/ExperienceList";
 import { ExperienceListItem } from "components/ExperienceListItem";
 import { Section } from "components/Section";
-import { SkillList } from "components/SkillList";
-import { SkillListItem } from "components/SkillListItem";
+import { SkillBarList } from "components/SkillBarList";
+import { SkillBarListItem } from "components/SkillBarListItem";
 import { SectionTitle } from "components/SectionTitle";
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
@@ -51,11 +51,11 @@ const Resume: NextPage<Props> = ({
             <h2>Skills</h2>
           </SectionTitle>
 
-          <SkillList>
+          <SkillBarList>
             {skills.map(skill => (
-              <SkillListItem key={skill.name} skill={skill} />
+              <SkillBarListItem key={skill.name} skill={skill} />
             ))}
-          </SkillList>
+          </SkillBarList>
         </section>
       </Section>
 

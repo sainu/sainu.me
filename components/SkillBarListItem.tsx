@@ -5,7 +5,7 @@ type Props = {
   skill: Skill
 }
 
-export const SkillListItem: FC<Props> = ({ skill }) => {
+export const SkillBarListItem: FC<Props> = ({ skill }) => {
   const colors = [
     ['bg-blue-50', 'text-gray-900'],
     ['bg-blue-100', 'text-gray-900'],
