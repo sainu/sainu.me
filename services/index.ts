@@ -95,7 +95,7 @@ const mapExperience = (data: any): Experience => {
     employmentType: data['employment_type'],
     department: data['department'],
     startDate: data['start_date'],
-    endDate: data['end_date'],
+    endDate: data['end_date'] === '0001-01-01T00:00:00Z' ? null : data['end_date'],
     projects: data.projects.map(mapProject),
   }
 }
