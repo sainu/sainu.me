@@ -1,5 +1,5 @@
 import type { InferGetStaticPropsType, NextPage } from 'next'
-import { fetchPosts, fetchProfile, fetchSkills } from 'services'
+import { fetchExperiences, fetchPosts, fetchProfile, fetchSkills } from 'services'
 import { CommonHeadMeta } from 'components/CommonHeadMeta'
 import { DefaultLayout } from 'components/DefaultLayout'
 import { WebsiteHeadMeta } from 'components/WebsiteHeadMeta'
@@ -11,6 +11,11 @@ import { SectionTitle } from 'components/SectionTitle'
 import { SkillRankListItem } from 'components/SkillRankListItem'
 import Link from 'next/link'
 import { SkillRankList } from 'components/SkillRankList'
+import { ExperienceList } from 'components/ExperienceList'
+import { ExperienceListItem } from 'components/ExperienceListItem'
+import { MoreLink } from 'components/MoreLink'
+import { ActiveWorkList } from 'components/ActiveWorkList'
+import { ActiveWorkListItem } from 'components/ActiveWorkListItem'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -19,10 +24,12 @@ export const getStaticProps = async () => {
     profile,
     posts,
     skills,
+    experiences,
   ] = await Promise.all([
     fetchProfile(),
     fetchPosts({ perPage: 5 }),
     fetchSkills(),
+    fetchExperiences(),
   ])
 
   return {
@@ -30,6 +37,7 @@ export const getStaticProps = async () => {
       profile,
       posts: posts,
       skills: skills.slice(0, 3),
+      experiences: experiences.filter(e => e.endDate === null),
     }
   }
 }
@@ -38,6 +46,7 @@ const HomePage: NextPage<Props> = ({
   profile,
   posts,
   skills,
+  experiences,
 }) => {
   return (
     <DefaultLayout profile={profile}>
@@ -61,6 +70,24 @@ const HomePage: NextPage<Props> = ({
       <Section>
         <section>
           <SectionTitle>
+            <h1>アクティブな活動</h1>
+          </SectionTitle>
+
+          <ActiveWorkList>
+            {experiences.map((experience, i) => (
+              <ActiveWorkListItem key={i} experience={experience} />
+            ))}
+          </ActiveWorkList>
+
+          <MoreLink href='/resume#experiences'>
+            過去の活動を見る
+          </MoreLink>
+        </section>
+      </Section>
+
+      <Section>
+        <section>
+          <SectionTitle>
             <h1>得意な技術トップ3</h1>
           </SectionTitle>
 
@@ -70,11 +97,9 @@ const HomePage: NextPage<Props> = ({
             ))}
           </SkillRankList>
 
-          <Link href='/resume#skills'>
-            <a className='text-sm underline mt-4 inline-block'>
-              もっと見る
-            </a>
-          </Link>
+          <MoreLink href='/resume#skills'>
+            全ての技術を見る
+          </MoreLink>
         </section>
       </Section>
     </DefaultLayout>

@@ -66,7 +66,7 @@ const ResumePage: NextPage<Props> = ({
       <Section>
         <section>
           <SectionTitle>
-            <h2>Experiences</h2>
+            <h2 id='experiences'>Experiences</h2>
           </SectionTitle>
 
           <ExperienceList>
