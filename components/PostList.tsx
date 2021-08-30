@@ -1,7 +1,7 @@
 import { FC } from "react"
 
 type Props = {
-  gapClass: string
+  gapClass?: string
 }
 
 export const PostList: FC<Props> = ({
