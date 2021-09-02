@@ -1,5 +1,6 @@
 import { unified } from 'unified'
 import rehypeStringify from 'rehype-stringify'
+import rehypeHighlight from 'rehype-highlight'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import fs from 'fs'
@@ -44,6 +45,7 @@ const mdToHtml = async(str: string): Promise<string> => {
   return (await unified()
     .use(remarkParse) // markdownをmdastに変換する
     .use(remarkRehype, { allowDangerousHtml: true }) // mdastをHASTに変換する
+    .use(rehypeHighlight) // markdown内のコードブロックにシンタックスハイライト用のHTMLを追加する
     .use(rehypeStringify) // HASTをHTMLに文字列化する
     .process(str))
     .toString()

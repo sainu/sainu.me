@@ -10,6 +10,17 @@ html {
   animation-fill-mode: forwards;
 }
 
+:not(pre) > code {
+  display: inline-block;
+  background: #f0f5f9;
+  border: 1px solid #e6edf3;
+  padding: .04em .3em;
+  margin: 0 .2em;
+  border-radius: 3px;
+  line-height: 1.4;
+  font-size: .85em;
+}
+
 .bp {
   font-size: 1.25rem;
   line-height: 2.25rem;
