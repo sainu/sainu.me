@@ -1,12 +1,8 @@
-import { useRouter } from "next/dist/client/router";
-import { FC, useState } from "react";
-import { GlobalNavigationLink } from "./GlobalNavigationLink";
-import { BookIcon } from "./icons/BookIcon";
-import { DocumentIcon } from "./icons/DocumentIcon";
-import { HomeIcon } from "./icons/HomeIcon";
-import { LightningChargeIcon } from "./icons/LightningChargeIcon";
-import { PersonIcon } from "./icons/PersonIcon";
-import { ProfileImage } from "./ProfileImage";
+import { useRouter } from "next/dist/client/router"
+import { FC, useState } from "react"
+import { GlobalNavigationLink } from "./GlobalNavigationLink"
+import { Icon } from "./Icon"
+import { ProfileImage } from "./ProfileImage"
 
 type Props = {}
 
@@ -15,14 +11,17 @@ const navClass = 'transition-all h-screen w-min max-w-xs' +
   ' p-2 sm:px-4 sm:py-8' +
   ' inline-flex flex-col-reverse sm:flex-col items-center sm:items-start flex-end'
 
+const iconProps = { width: 28, height: 28 }
+const filledIconProps = Object.assign({}, iconProps, { fill: true })
+
 const navIcons = (pathname: string) => {
   return [
     <GlobalNavigationLink
       key='1'
       href='/'
       active={pathname === '/'}
-      icon={<HomeIcon width={28} height={28} />}
-      activeIcon={<HomeIcon width={28} height={28} fill={true} />}
+      icon={<Icon name='home' {...iconProps} />}
+      activeIcon={<Icon name='home' {...filledIconProps} />}
     >
       Home
     </GlobalNavigationLink>,
@@ -30,8 +29,8 @@ const navIcons = (pathname: string) => {
       key='2'
       href='/posts/page/1'
       active={pathname.startsWith('/posts/page/')}
-      icon={<BookIcon width={28} height={28} />}
-      activeIcon={<BookIcon width={28} height={28} fill={true} />}
+      icon={<Icon name='book' {...iconProps} />}
+      activeIcon={<Icon name='book' {...filledIconProps} />}
     >
       Posts
     </GlobalNavigationLink>,
@@ -39,8 +38,8 @@ const navIcons = (pathname: string) => {
       key='3'
       href='/activities'
       active={pathname === '/activities'}
-      icon={<LightningChargeIcon width={28} height={28} />}
-      activeIcon={<LightningChargeIcon width={28} height={28} fill={true} />}
+      icon={<Icon name='lightning-charge' {...iconProps} />}
+      activeIcon={<Icon name='lightning-charge' {...filledIconProps} />}
     >
       Activities
     </GlobalNavigationLink>,
@@ -48,8 +47,8 @@ const navIcons = (pathname: string) => {
       key='4'
       href='/about'
       active={pathname === '/about'}
-      icon={<PersonIcon width={28} height={28} />}
-      activeIcon={<PersonIcon width={28} height={28} fill={true} />}
+      icon={<Icon name='person' {...iconProps} />}
+      activeIcon={<Icon name='person' {...filledIconProps} />}
     >
       About
     </GlobalNavigationLink>,
@@ -57,8 +56,8 @@ const navIcons = (pathname: string) => {
       key='5'
       href='/resume'
       active={pathname === '/resume'}
-      icon={<DocumentIcon width={28} height={28} />}
-      activeIcon={<DocumentIcon width={28} height={28} fill={true} />}
+      icon={<Icon name='document' {...iconProps} />}
+      activeIcon={<Icon name='document' {...filledIconProps} />}
     >
       Resume
     </GlobalNavigationLink>,

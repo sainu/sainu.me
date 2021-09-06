@@ -1,9 +1,8 @@
 import { useRouter } from "next/dist/client/router"
-import { Children, FC } from "react"
+import { FC } from "react"
 import Link from 'next/link'
 import { getPagingRange, getTotalPages } from "lib/pagination"
-import { ChevronBarLeftIcon } from "./icons/ChevronBarLeft"
-import { ChevronBarRightIcon } from "./icons/ChevronBarRight"
+import { Icon } from "./Icon"
 
 type Props = {
   totalCount: number
@@ -34,7 +33,7 @@ export const Pagination: FC<Props> = ({
           <li className='flex items-center'>
             <Link href={{ pathname, query: { ...query, page: pages[0] } }}>
               <a className={itemClasses}>
-                <ChevronBarLeftIcon width={IconSize} />
+                <Icon name='chevron-bar-left' width={IconSize} />
               </a>
             </Link>
           </li>
@@ -58,7 +57,7 @@ export const Pagination: FC<Props> = ({
           <li className='flex items-center'>
             <Link href={{ pathname, query: { ...query, page: pages[pages.length - 1] } }}>
               <a className={itemClasses}>
-                <ChevronBarRightIcon width={IconSize} />
+                <Icon name='chevron-bar-right' width={IconSize} />
               </a>
             </Link>
           </li>

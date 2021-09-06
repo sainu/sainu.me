@@ -1,12 +1,8 @@
 import { FC } from "react";
 import Image from "next/image"
+import { IconProps } from "components/Icon";
 
-type Props = {
-  width: number
-  height: number
-}
-
-export const QiitaIcon: FC<Props> = ({
+export const QiitaIcon: FC<IconProps> = ({
   width,
   height,
 }) => {

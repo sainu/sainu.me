@@ -1,11 +1,7 @@
+import { IconProps } from "components/Icon"
 import { FC } from "react"
 
-type Props = {
-  width: number
-  height: number
-}
-
-export const EnvelopeIcon: FC<Props> = ({
+export const EnvelopeIcon: FC<IconProps> = ({
   width = 24,
   height = 24,
 }) => {
