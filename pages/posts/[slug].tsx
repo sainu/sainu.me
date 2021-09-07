@@ -1,3 +1,5 @@
+import { ArticleHeadMeta } from "components/ArticleHeadMeta"
+import { CommonHeadMeta } from "components/CommonHeadMeta"
 import { DefaultLayout } from "components/DefaultLayout"
 import { PostList } from "components/PostList"
 import { PostListItem } from "components/PostListItem"
@@ -61,6 +63,11 @@ const PostPage: NextPage<Props> = ({
 }) => {
   return (
     <DefaultLayout profile={profile}>
+      <CommonHeadMeta
+        title={post.title}
+        path={`/posts/${post.slug}`} />
+      <ArticleHeadMeta publishedTime={new Date(post.publishedAt)} />
+
       <article>
         <h1 className="text-3xl font-bold">
           {post.title}
