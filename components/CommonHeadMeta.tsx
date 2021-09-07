@@ -24,7 +24,7 @@ export const CommonHeadMeta: FC<Props> = ({
       <meta property="og:title" content={titleAndSiteName} />
       <meta property="og:image" content={imageUrl} />
       <meta property="og:url" content={`${process.env.NEXT_PUBLIC_SITE_URL}${path}`} />
-      <meta property="og:NEXT_PUBLIC_SITE_NAME" content={siteName} />
+      <meta property="og:site_name" content={siteName} />
     </Head>
   )
 }
