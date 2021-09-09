@@ -13,4 +13,5 @@ export type Profile = {
   email: string,
   bio: string,
   location: string,
+  profileImageUrl: string,
 }

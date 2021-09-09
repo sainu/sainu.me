@@ -1,10 +1,13 @@
 import { useRouter } from "next/dist/client/router"
 import { FC, useState } from "react"
+import { Profile } from "type/api/profile"
 import { GlobalNavigationLink } from "./GlobalNavigationLink"
 import { Icon } from "./Icon"
 import { ProfileImage } from "./ProfileImage"
 
-type Props = {}
+type Props = {
+  profile: Profile
+}
 
 const navClass = 'transition-all h-screen w-min max-w-xs' +
   ' fixed top-auto right-0 bottom-0 sm:sticky sm:top-0 sm:right-auto sm:bottom-auto' +
@@ -65,8 +68,10 @@ const navIcons = (pathname: string) => {
 }
 
 const Thumbnail: FC<{
+  url: string
   onClick?: () => void
 }> = ({
+  url,
   onClick,
 }) => {
   return (
@@ -76,13 +81,15 @@ const Thumbnail: FC<{
         style={{ fontSize: '0px' }}
         onClick={() => onClick && onClick()}
       >
-        <ProfileImage width={96} height={96} />
+        <ProfileImage url={url} width={96} height={96} />
       </div>
     </div>
   )
 }
 
-export const GlobalHeader: FC<Props> = () => {
+export const GlobalHeader: FC<Props> = ({
+  profile,
+}) => {
   const router = useRouter()
   const [hideMenu, setHideMenu] = useState(true)
 
@@ -91,7 +98,7 @@ export const GlobalHeader: FC<Props> = () => {
   return (
     <header className='z-10'>
       <nav className={navClass + ' hidden sm:block'}>
-        <Thumbnail />
+        <Thumbnail url={profile.profileImageUrl} />
 
         {navIcons(router.pathname).map((icon, i) => (
           <div key={i}>{icon}</div>
@@ -99,7 +106,7 @@ export const GlobalHeader: FC<Props> = () => {
       </nav>
 
       <nav className={navClass + ' block sm:hidden'}>
-        <Thumbnail onClick={() => setHideMenu(!hideMenu)} />
+        <Thumbnail url={profile.profileImageUrl} onClick={() => setHideMenu(!hideMenu)} />
 
         {navIcons(router.pathname).map((icon, i) => (
           <div key={i} className={mobileLinkClass + ' mb-2'}>{icon}</div>

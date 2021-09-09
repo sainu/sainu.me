@@ -46,6 +46,7 @@ const mapProfile = (data: any): Profile => {
     email: data['email'],
     bio: data['bio'],
     location: data['location'],
+    profileImageUrl: data['profile_image_url'],
   }
 }
 

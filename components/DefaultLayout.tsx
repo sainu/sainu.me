@@ -13,7 +13,7 @@ export const DefaultLayout: FC<Props> = ({
 }) => {
   return (
     <div className='flex flex-row justify-start sm:justify-center transition-all '>
-      <GlobalHeader />
+      <GlobalHeader profile={profile} />
 
       <main className="my-0 pt-8 px-4" style={{ width: '640px' }}>
         {children}
