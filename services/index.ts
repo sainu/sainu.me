@@ -4,7 +4,6 @@ import { Post, PostMdMeta } from "type/api/post"
 import { Profile } from "type/api/profile"
 import { Skill } from "type/api/skill"
 import { SocialLink } from "type/api/socialLink"
-import { WebLink } from "type/api/webLink"
 import path from 'path'
 import fs from 'fs'
 import * as md from 'lib/markdown'
@@ -68,18 +67,6 @@ export const fetchSocialLinks = async (): Promise<SocialLink[]> => {
 }
 
 const mapSocialLink = (data: any): SocialLink => {
-  return {
-    name: data['name'],
-    url: data['url'],
-  }
-}
-
-export const fetchWebLinks = async(): Promise<WebLink[]> => {
-  const res = await profileApiClient.get('/api/web_links')
-  return res.data.map(mapWebLink)
-}
-
-const mapWebLink = (data: any): WebLink => {
   return {
     name: data['name'],
     url: data['url'],

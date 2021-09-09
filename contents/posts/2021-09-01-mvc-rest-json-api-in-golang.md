@@ -16,8 +16,7 @@ MVCに対応するGoスクリプトは、M=`models`,V=`views`,C=`controllers`デ
 │   ├── experiences_controller.go
 │   ├── profiles_controller.go
 │   ├── skills_controller.go
-│   ├── social_links_controller.go
-│   └── web_links_controller.go
+│   └── social_links_controller.go
 ├── go.mod
 ├── go.sum
 ├── models/
@@ -26,8 +25,7 @@ MVCに対応するGoスクリプトは、M=`models`,V=`views`,C=`controllers`デ
 │   ├── project.go
 │   ├── skill.go
 │   ├── social_link.go
-│   ├── technology.go
-│   └── web_link.go
+│   └── technology.go
 ├── server/
 │   ├── auth.go
 │   └── router.go
@@ -38,8 +36,7 @@ MVCに対応するGoスクリプトは、M=`models`,V=`views`,C=`controllers`デ
     ├── projects_view.go
     ├── skills_view.go
     ├── social_links_view.go
-    ├── technologies_view.go
-    └── web_links_view.go
+    └── technologies_view.go
 ```
 
 # サンプル
@@ -207,9 +204,6 @@ func NewRouter() (*echo.Echo, error) {
 
 	socialLinksController := controllers.NewSocialLinksController()
 	router.GET("/api/social_links", socialLinksController.Index)
-
-	webLinksController := controllers.NewWebLinksController()
-	router.GET("/api/web_links", webLinksController.Index)
 
 	return router, nil
 }
