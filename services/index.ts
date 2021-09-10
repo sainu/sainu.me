@@ -10,6 +10,7 @@ import * as md from 'lib/markdown'
 import { DEFAULT_PER_PAGE, getTotalPages, paging } from "lib/pagination"
 import { parseStringPromise } from 'xml2js'
 import { QiitaPost } from "type/api/qiitaPost"
+import { LifeEvent } from "type/api/lifeEvent"
 
 type IndexParams = {
   page?: number
@@ -155,5 +156,17 @@ const mapQiitaPost = (data: any): QiitaPost => {
     updated: data['updated'][0],
     url: data['url'][0],
     title: data['title'][0],
+  }
+}
+
+export const fetchLifeEvents = async(): Promise<LifeEvent[]> => {
+  const res = await profileApiClient.get("/api/life_events")
+  return res.data.map(mapLifeEvent)
+}
+
+const mapLifeEvent = (data: any): LifeEvent => {
+  return {
+    title: data['title'],
+    date: data['date'],
   }
 }
