@@ -29,6 +29,15 @@ const navIcons = (pathname: string) => {
       Home
     </GlobalNavigationLink>,
     <GlobalNavigationLink
+      key='4'
+      href='/about'
+      active={pathname === '/about'}
+      icon={<Icon name='person' {...iconProps} />}
+      activeIcon={<Icon name='person' {...filledIconProps} />}
+    >
+      About
+    </GlobalNavigationLink>,
+    <GlobalNavigationLink
       key='2'
       href='/posts/page/1'
       active={pathname.startsWith('/posts/page/')}
@@ -45,15 +54,6 @@ const navIcons = (pathname: string) => {
       activeIcon={<Icon name='lightning-charge' {...filledIconProps} />}
     >
       Activities
-    </GlobalNavigationLink>,
-    <GlobalNavigationLink
-      key='4'
-      href='/about'
-      active={pathname === '/about'}
-      icon={<Icon name='person' {...iconProps} />}
-      activeIcon={<Icon name='person' {...filledIconProps} />}
-    >
-      About
     </GlobalNavigationLink>,
   ]
 }
