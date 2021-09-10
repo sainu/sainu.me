@@ -55,15 +55,6 @@ const navIcons = (pathname: string) => {
     >
       About
     </GlobalNavigationLink>,
-    <GlobalNavigationLink
-      key='5'
-      href='/resume'
-      active={pathname === '/resume'}
-      icon={<Icon name='document' {...iconProps} />}
-      activeIcon={<Icon name='document' {...filledIconProps} />}
-    >
-      Resume
-    </GlobalNavigationLink>,
   ]
 }
 
