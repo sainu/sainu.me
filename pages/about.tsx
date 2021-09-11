@@ -4,6 +4,7 @@ import {
   fetchProfile,
   fetchSkills,
   fetchSocialLinks,
+  fetchTimeline,
 } from 'services'
 import { CommonHeadMeta } from 'components/CommonHeadMeta'
 import { ProfileHeadMeta } from 'components/ProfileHeadMeta'
@@ -19,6 +20,8 @@ import { SkillBarList } from 'components/SkillBarList'
 import { SkillBarListItem } from 'components/SkillBarListItem'
 import { ExperienceList } from 'components/ExperienceList'
 import { ExperienceListItem } from 'components/ExperienceListItem'
+import { Timeline } from 'components/Timeline'
+import { TimelineItem } from 'components/TimelineItem'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -28,11 +31,13 @@ export const getStaticProps = async () => {
     socialLinks,
     skills,
     experiences,
+    timeline,
   ] = await Promise.all([
     fetchProfile(),
     fetchSocialLinks(),
     fetchSkills(),
     fetchExperiences(),
+    fetchTimeline(),
   ])
 
   return {
@@ -41,6 +46,7 @@ export const getStaticProps = async () => {
       socialLinks,
       skills,
       experiences,
+      timeline,
     }
   }
 }
@@ -52,6 +58,7 @@ const AboutPage: NextPage<Props> = ({
   socialLinks,
   skills,
   experiences,
+  timeline,
 }) => {
   return (
     <DefaultLayout profile={profile}>
@@ -91,6 +98,20 @@ const AboutPage: NextPage<Props> = ({
               </div>
             </div>
           </div>
+        </section>
+      </Section>
+
+      <Section>
+        <section>
+          <SectionTitle>
+            <h2 id='timeline'>タイムライン</h2>
+          </SectionTitle>
+
+          <Timeline>
+            {timeline.map((timelineData, i) => (
+              <TimelineItem key={i} timelineData={timelineData} />
+            ))}
+          </Timeline>
         </section>
       </Section>
 

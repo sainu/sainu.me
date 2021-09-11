@@ -11,6 +11,7 @@ import { DEFAULT_PER_PAGE, getTotalPages, paging } from "lib/pagination"
 import { parseStringPromise } from 'xml2js'
 import { QiitaPost } from "type/api/qiitaPost"
 import { LifeEvent } from "type/api/lifeEvent"
+import { TimelineData } from "type/api/timeline"
 
 type IndexParams = {
   page?: number
@@ -169,4 +170,30 @@ const mapLifeEvent = (data: any): LifeEvent => {
     title: data['title'],
     date: data['date'],
   }
+}
+
+export const fetchTimeline = async(): Promise<TimelineData[]> => {
+  const [
+    lifeEvents,
+    experiences,
+  ] = await Promise.all([
+    fetchLifeEvents(),
+    fetchExperiences(),
+  ])
+
+  return [
+    ...lifeEvents.map(
+      (e): TimelineData => ({ type: "lifeEvent", data: e, date: e.date })
+    ),
+    ...experiences.map(
+      (e): TimelineData => ({ type: "experience", data: e, date: e.startDate, start: true })
+    ),
+    ...experiences.reduce<TimelineData[]>(
+      (acc, e) => {
+        if (!e.endDate) return [...acc]
+        return [...acc, { type: "experience", data: e, date: e.endDate, start: false }]
+      },
+      []
+    ),
+  ].sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
 }

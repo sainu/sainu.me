@@ -19,3 +19,15 @@ export const formatPostPublishedTime = (date: string): string => {
 export const formatQiitaPostTime = (date: string): string => {
   return dayjs(date).format('YYYY年MM月DD日')
 }
+
+export const getYear = (date: string): number => {
+  return dayjs(date).year()
+}
+
+export const getMonth = (date: string): number => {
+  return dayjs(date).month() + 1
+}
+
+export const getDate = (date: string): number => {
+  return dayjs(date).date()
+}

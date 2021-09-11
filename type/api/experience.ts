@@ -1,6 +1,6 @@
 export type Experience = {
   companyName: string,
-  employmentType: string,
+  employmentType: "正社員" | "パートタイム" | "フリーランス" | "インターン",
   startDate: string,
   endDate: string | null,
   projects: Project[]

@@ -1,5 +1,5 @@
 import type { InferGetStaticPropsType, NextPage } from 'next'
-import { fetchExperiences, fetchPosts, fetchProfile, fetchSkills } from 'services'
+import { fetchExperiences, fetchPosts, fetchProfile, fetchSkills, fetchTimeline } from 'services'
 import { CommonHeadMeta } from 'components/CommonHeadMeta'
 import { DefaultLayout } from 'components/DefaultLayout'
 import { WebsiteHeadMeta } from 'components/WebsiteHeadMeta'
@@ -13,6 +13,8 @@ import { SkillRankList } from 'components/SkillRankList'
 import { MoreLink } from 'components/MoreLink'
 import { ActiveWorkList } from 'components/ActiveWorkList'
 import { ActiveWorkListItem } from 'components/ActiveWorkListItem'
+import { Timeline } from 'components/Timeline'
+import { TimelineItem } from 'components/TimelineItem'
 
 type Props = InferGetStaticPropsType<typeof getStaticProps>
 
@@ -22,11 +24,13 @@ export const getStaticProps = async () => {
     posts,
     skills,
     experiences,
+    timeline,
   ] = await Promise.all([
     fetchProfile(),
     fetchPosts({ perPage: 5 }),
     fetchSkills(),
     fetchExperiences(),
+    fetchTimeline(),
   ])
 
   return {
@@ -35,6 +39,7 @@ export const getStaticProps = async () => {
       posts: posts,
       skills: skills.slice(0, 3),
       experiences: experiences.filter(e => e.endDate === null),
+      timeline: timeline.slice(0, 3),
     }
   }
 }
@@ -44,6 +49,7 @@ const HomePage: NextPage<Props> = ({
   posts,
   skills,
   experiences,
+  timeline,
 }) => {
   return (
     <DefaultLayout profile={profile}>
@@ -78,6 +84,24 @@ const HomePage: NextPage<Props> = ({
 
           <MoreLink href='/about#experiences'>
             過去の活動を見る
+          </MoreLink>
+        </section>
+      </Section>
+
+      <Section>
+        <section>
+          <SectionTitle>
+            <h1>最近のイベント</h1>
+          </SectionTitle>
+
+          <Timeline>
+            {timeline.map((timelineData, i) => (
+              <TimelineItem key={i} timelineData={timelineData} />
+            ))}
+          </Timeline>
+
+          <MoreLink href='/about#timeline'>
+            過去のタイムラインを見る
           </MoreLink>
         </section>
       </Section>
