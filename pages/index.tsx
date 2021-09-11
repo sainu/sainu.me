@@ -76,7 +76,7 @@ const HomePage: NextPage<Props> = ({
             ))}
           </ActiveWorkList>
 
-          <MoreLink href='/resume#experiences'>
+          <MoreLink href='/about#experiences'>
             過去の活動を見る
           </MoreLink>
         </section>
@@ -94,7 +94,7 @@ const HomePage: NextPage<Props> = ({
             ))}
           </SkillRankList>
 
-          <MoreLink href='/resume#skills'>
+          <MoreLink href='/about#skills'>
             全ての技術を見る
           </MoreLink>
         </section>
