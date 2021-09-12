@@ -10,9 +10,9 @@ type Props = {
 }
 
 const navClass = 'transition-all h-screen w-min max-w-xs' +
-  ' fixed top-auto right-0 bottom-0 sm:sticky sm:top-0 sm:right-auto sm:bottom-auto' +
-  ' p-2 sm:px-4 sm:py-8' +
-  ' inline-flex flex-col-reverse sm:flex-col items-center sm:items-start flex-end'
+  ' fixed top-auto right-0 bottom-0 md:sticky md:top-0 md:right-auto md:bottom-auto' +
+  ' p-2 md:px-4 md:py-8' +
+  ' inline-flex flex-col-reverse md:flex-col items-center md:items-start flex-end'
 
 const iconProps = { width: 28, height: 28 }
 const filledIconProps = Object.assign({}, iconProps, { fill: true })
@@ -68,7 +68,7 @@ const Thumbnail: FC<{
   return (
     <div className='w-full text-center'>
       <div
-        className="inline-block cursor-pointer sm:cursor-auto mb-0 sm:mb-4 w-20 sm:w-24 shadow sm:shadow-none rounded-full bg-gray-100 p-2"
+        className="inline-block cursor-pointer md:cursor-auto mb-0 md:mb-4 w-20 md:w-24 shadow md:shadow-none rounded-full bg-gray-100 p-2"
         style={{ fontSize: '0px' }}
         onClick={() => onClick && onClick()}
       >
@@ -88,7 +88,7 @@ export const GlobalHeader: FC<Props> = ({
 
   return (
     <header className='z-10'>
-      <nav className={navClass + ' hidden sm:block'}>
+      <nav className={navClass + ' hidden md:block'}>
         <Thumbnail url={profile.profileImageUrl} />
 
         {navIcons(router.pathname).map((icon, i) => (
@@ -96,7 +96,7 @@ export const GlobalHeader: FC<Props> = ({
         ))}
       </nav>
 
-      <nav className={navClass + ' block sm:hidden'}>
+      <nav className={navClass + ' block md:hidden'}>
         <Thumbnail url={profile.profileImageUrl} onClick={() => setHideMenu(!hideMenu)} />
 
         {navIcons(router.pathname).map((icon, i) => (
