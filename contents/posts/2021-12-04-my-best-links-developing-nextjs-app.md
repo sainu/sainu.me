@@ -32,6 +32,10 @@ published_at: '2021-12-04T18:30:00+09:00'
 **[React公式ドキュメント](https://ja.reactjs.org/docs/getting-started.html)と決定的な違いは、説明で使われるコンポーネントがクラスではなくhooksを使って書き直されているところ**です。
 その他に、インタラクティブに変更が反映されるサンプルコードや視覚的な図が追加されていたりします。
 
+## [Blogged Answers: Why React Context is Not a "State Management" Tool (and Why It Doesn't Replace Redux)](https://blog.isquaredsoftware.com/2021/01/context-redux-differences)
+
+「Contextは状態管理ではない」ということをreduxと比較して説明している。
+
 ## 設計
 
 ### [Storybook First な開発のススメ | blog.ojisan.io](https://blog.ojisan.io/storybook-first-develop/)
