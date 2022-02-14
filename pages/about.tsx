@@ -74,7 +74,7 @@ const AboutPage: NextPage<Props> = ({
       <Section>
         <section>
           <div className="flex flex-col sm:flex-row mt-12 gap-6">
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div className="flex sm:items-start">
                 <ProfileImage url={profile.profileImageUrl} width={100} height={100} />
               </div>

@@ -15,7 +15,7 @@ export const PostListItem: FC<Props> = ({
   return (
     <article>
       <Link href={`/posts/${post.slug}`}>
-        <a className='block p-4 rounded-md transition-all transform hover:shadow'>
+        <a className='block p-4 rounded-md transition-all hover:shadow'>
           {label ?
             <div className='text-gray-600 font-bold'>
               {label}

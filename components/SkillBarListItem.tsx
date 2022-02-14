@@ -23,7 +23,7 @@ export const SkillBarListItem: FC<Props> = ({ skill }) => {
   const level = Math.floor(skill.score / colorsSize)
 
   return (
-    <div className="bg-gray-100 rounded-full transform hover:shadow hover:scale-105 transition-all cursor-pointer">
+    <div className="bg-gray-100 rounded-full hover:shadow hover:scale-105 transition-all cursor-pointer">
       <div style={{ width: `${skill.score}%` }}>
         <div className={`animate-left-to-right flex items-center justify-start h-6 px-4 rounded-full ${colors[level][0]}`}>
           <span className={`${colors[level][1]} text-sm`}>
