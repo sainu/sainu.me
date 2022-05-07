@@ -1,3 +1,5 @@
+import { ComponentProps } from "react"
+import { DiscussionEmbed } from "disqus-react"
 import { ArticleHeadMeta } from "components/ArticleHeadMeta"
 import { CommonHeadMeta } from "components/CommonHeadMeta"
 import { DefaultLayout } from "components/DefaultLayout"
@@ -8,6 +10,8 @@ import { GetStaticPaths, GetStaticProps, GetStaticPropsContext, NextPage } from 
 import { fetchPost, fetchPosts, fetchProfile } from "services"
 import { Post } from "type/api/post"
 import { Profile } from "type/api/profile"
+
+type DiscussionEmbedConfig = ComponentProps<typeof DiscussionEmbed>['config']
 
 type Params = {
   slug: string
@@ -61,11 +65,19 @@ const PostPage: NextPage<Props> = ({
   nextPost,
   profile,
 }) => {
+  const path = `/posts/${post.slug}`
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL}${path}`
+  const disqusConfig: DiscussionEmbedConfig = {
+    url,
+    identifier: post.slug,
+    title: post.title,
+  }
+
   return (
     <DefaultLayout profile={profile}>
       <CommonHeadMeta
         title={post.title}
-        path={`/posts/${post.slug}`} />
+        path={path} />
       <ArticleHeadMeta publishedTime={new Date(post.publishedAt)} />
 
       <article>
@@ -83,6 +95,8 @@ const PostPage: NextPage<Props> = ({
           className='bp'
           dangerouslySetInnerHTML={{ __html: post.content }} />
       </article>
+
+      <DiscussionEmbed shortname="sainu-me" config={disqusConfig} />
 
       <aside className='mt-12'>
         <PostList gapClass='gap-1'>
