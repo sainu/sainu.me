@@ -28,8 +28,8 @@ export const getStaticProps = async () => {
   ] = await Promise.all([
     fetchProfile(),
     fetchPosts({ perPage: 5 }),
-    fetchSkills(),
-    fetchExperiences(),
+    fetchSkills({ orders: '-score' }),
+    fetchExperiences({ orders: '-startDate' }),
     fetchTimeline(),
   ])
 

@@ -1,14 +1,11 @@
 import axios from "axios";
 
 export const profileApiClient = axios.create({
-  baseURL: process.env.API_BASE_URL,
+  baseURL: process.env.PROFILE_API_BASE_URL,
   timeout: 3 * 60 * 1000,
   headers: {
-    'User-Agent': 'profile-front'
-  },
-  auth: {
-    username: process.env.BASIC_AUTH_USERNAME || 'local',
-    password: process.env.BASIC_AUTH_PASSWORD || 'secret',
+    'User-Agent': 'sainu.me',
+    'X-MICROCMS-API-KEY': process.env.PROFILE_API_API_KEY || '',
   },
 })
 

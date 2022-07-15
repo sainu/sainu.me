@@ -35,8 +35,8 @@ export const getStaticProps = async () => {
   ] = await Promise.all([
     fetchProfile(),
     fetchSocialLinks(),
-    fetchSkills(),
-    fetchExperiences(),
+    fetchSkills({ orders: '-score' }),
+    fetchExperiences({ orders: '-startDate' }),
     fetchTimeline(),
   ])
 

@@ -28,33 +28,30 @@ type IndexResponse<T> = {
 }
 
 export const fetchProfile = async (): Promise<Profile> => {
-  const res = await profileApiClient.get('/api/profile')
+  const res = await profileApiClient.get('/api/v1/profile')
   return mapProfile(res.data)
 }
 
 const mapProfile = (data: any): Profile => {
   return {
-    familyNameKanji: data['family_name_kanji'],
-    givenNameKanji: data['given_name_kanji'],
-    familyNameKana: data['family_name_kana'],
-    givenNameKana: data['given_name_kana'],
-    familyNameEn: data['family_name_en'],
-    givenNameEn: data['given_name_en'],
-    fullNameKanji: data['full_name_kanji'],
-    fullNameKana: data['full_name_kana'],
-    fullNameEn: data['full_name_en'],
+    familyNameKanji: data['familyNameKanji'],
+    givenNameKanji: data['givenNameKanji'],
+    familyNameKana: data['familyNameKana'],
+    givenNameKana: data['givenNameKana'],
+    familyNameEn: data['familyNameEn'],
+    givenNameEn: data['givenNameEn'],
     nickname: data['nickname'],
     job: data['job'],
     email: data['email'],
     bio: data['bio'],
     location: data['location'],
-    profileImageUrl: data['profile_image_url'],
+    profileImageUrl: data['profileImage']['url'],
   }
 }
 
-export const fetchSkills = async (): Promise<Skill[]> => {
-  const res = await profileApiClient.get<any[]>('/api/skills')
-  return res.data.map(mapSkill).sort((a, b) => b.score - a.score)
+export const fetchSkills = async (params?: { orders: '-score' }): Promise<Skill[]> => {
+  const res = await profileApiClient.get('/api/v1/skills', { params: params })
+  return res.data.contents.map(mapSkill)
 }
 
 const mapSkill = (data: any): Skill => {
@@ -65,8 +62,8 @@ const mapSkill = (data: any): Skill => {
 }
 
 export const fetchSocialLinks = async (): Promise<SocialLink[]> => {
-  const res = await profileApiClient.get('/api/social_links')
-  return res.data.map(mapSocialLink)
+  const res = await profileApiClient.get('/api/v1/social_links')
+  return res.data.contents.map(mapSocialLink)
 }
 
 const mapSocialLink = (data: any): SocialLink => {
@@ -76,17 +73,17 @@ const mapSocialLink = (data: any): SocialLink => {
   }
 }
 
-export const fetchExperiences = async(): Promise<Experience[]> => {
-  const res = await profileApiClient.get('/api/experiences')
-  return res.data.map(mapExperience)
+export const fetchExperiences = async(params?: { orders: '-startDate' }): Promise<Experience[]> => {
+  const res = await profileApiClient.get('/api/v1/experiences', { params })
+  return res.data.contents.map(mapExperience)
 }
 
 const mapExperience = (data: any): Experience => {
   return {
-    companyName: data['company_name'],
-    employmentType: data['employment_type'],
-    startDate: data['start_date'],
-    endDate: data['end_date'] === '0001-01-01T00:00:00Z' ? null : data['end_date'],
+    companyName: data['companyName'],
+    employmentType: data['employmentTypes'][0],
+    startDate: data['startDate'],
+    endDate: data['endDate'] ? data['endDate'] : null,
     projects: data.projects.map(mapProject),
   }
 }
@@ -100,8 +97,8 @@ const mapProject = (data: any): Project => {
 
 const mapTechnology = (data: any): Technology => {
   return {
-    name: data['name'],
-    versions: data['versions'],
+    name: data['technology']['name'],
+    versions: data['versions'] ? [data['versions']] : null,
   }
 }
 
@@ -161,8 +158,8 @@ const mapQiitaPost = (data: any): QiitaPost => {
 }
 
 export const fetchLifeEvents = async(): Promise<LifeEvent[]> => {
-  const res = await profileApiClient.get("/api/life_events")
-  return res.data.map(mapLifeEvent)
+  const res = await profileApiClient.get("/api/v1/life_events")
+  return res.data.contents.map(mapLifeEvent)
 }
 
 const mapLifeEvent = (data: any): LifeEvent => {
@@ -178,7 +175,7 @@ export const fetchTimeline = async(): Promise<TimelineData[]> => {
     experiences,
   ] = await Promise.all([
     fetchLifeEvents(),
-    fetchExperiences(),
+    fetchExperiences({ orders: '-startDate' }),
   ])
 
   return [
@@ -195,5 +192,5 @@ export const fetchTimeline = async(): Promise<TimelineData[]> => {
       },
       []
     ),
-  ].sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+  ].sort((a, b) => b.date.localeCompare(a.date))
 }

@@ -18,7 +18,7 @@ export const DefaultLayout: FC<Props> = ({
       <main className="my-0 pt-8 px-4">
         {children}
 
-        <Footer copyRight={profile.fullNameEn} />
+        <Footer copyRight={`${profile.givenNameEn} ${profile.familyNameEn}`} />
       </main>
     </div>
   )
