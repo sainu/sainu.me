@@ -23,7 +23,7 @@
     "@types/xml2js": "^0.4.11",
     "autoprefixer": "^10.4.7",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.0",
+    "eslint-config-next": "12.2.3",
     "gray-matter": "^4.0.3",
     "next-sitemap": "^3.1.11",
     "postcss": "^8.4.14",
